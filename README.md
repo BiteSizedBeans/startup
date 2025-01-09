@@ -1,8 +1,8 @@
-# Your startup name here
+# TalkBack
 
 [My Notes](notes.md)
 
-A brief description of the application here. Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
+TalkBack is an interactive note taking app that allows you to upload audio recordings of seminars, lectures, personal notes, or any other audio content. The audio is transcribed and uploaded to a Large Language Model, allowing you to interact with the audio notes in a conversational manner. Since the model has access to a word-for-word recording of the lecture or seminar, you can ask questions about the content and get answers in real time. TalkBack is effectively an interactive digital notebook, perfect for students, professionals, and anyone who wants to utilize notes in a more engaging way.
 
 
 > [!NOTE]
@@ -18,45 +18,57 @@ A brief description of the application here. Lorem ipsum dolor sit amet, consect
 
 For this deliverable I did the following. I checked the box `[x]` and added a description for things I completed.
 
-- [ ] Proper use of Markdown
-- [ ] A concise and compelling elevator pitch
-- [ ] Description of key features
-- [ ] Description of how you will use each technology
-- [ ] One or more rough sketches of your application. Images must be embedded in this file using Markdown image references.
+- [x] Proper use of Markdown
+- [x] A concise and compelling elevator pitch
+- [x] Description of key features
+- [x] Description of how you will use each technology
+- [x] One or more rough sketches of your application. Images must be embedded in this file using Markdown image references.
 
 ### Elevator pitch
 
-Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
+TalkBack is an interactive note taking app that allows you to upload audio recordings of seminars, lectures, personal notes, or any other audio content. The audio is transcribed and uploaded to a Large Language Model, allowing you to interact with the audio notes in a conversational manner. Since the model has access to a word-for-word recording of the lecture or seminar, you can ask questions about the content and get answers in real time. TalkBack is effectively an interactive digital notebook, perfect for students, professionals, and anyone who wants to utilize notes in a more engaging way.
 
 ### Design
 
-![Design image](placeholder.png)
+![Design Sketch](TalkBackSketch.jpg)
 
-Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
+This squence diagram shows the flow of the application. The user uploads an audio recording, the audio is transcribed and uploaded to the LLM, and the user can then interact with the notes in a conversational manner.
 
 ```mermaid
 sequenceDiagram
-    actor You
+    actor User
     actor Website
-    You->>Website: Replace this with your design
+    User->>Website: Upload audio recording
+    Website->>Website: Transcribe audio
+    Website->>Website: Upload to LLM
+    Website->>User: Display Transcript
+    User->>Website: Ask questions
+    Website->>User: Answer questions
 ```
 
 ### Key features
 
-- Describe your key feature
-- Describe your key feature
-- Describe your key feature
+- Secure user authentication and data storage
+- Ability to store multiple audio recordings and notes
+- User-friendly interface for uploading and interacting with audio recordings
+- Ability to summarize the audio content
+- Real-time transcription and LLM interaction
+- Ability to ask questions about the audio content
+
 
 ### Technologies
 
 I am going to use the required technologies in the following ways.
 
-- **HTML** - Description here
-- **CSS** - Description here
-- **React** - Description here
-- **Service** - Description here
-- **DB/Login** - Description here
-- **WebSocket** - Description here
+- **HTML** - Uses correct HTML elements and attributes to build the website and display chat interface. Also Includes library dropdown and login page.
+- **CSS** - Asthetic design of the website and chat interface. Compatibility across different screen sizes and types.
+- **React** - Provides login capabilities and allows for the chat interface to be displayed. Also allows for the library dropdown to be displayed and function.
+- **Service** - backend service that handles the audio transcription and LLM interaction.
+    - Supports login and registration systems.
+    - Supports storing audio recordings and notes/chat history.
+    - Supports audio transcription and LLM interaction.
+- **DB/Login** - Stores user data and authentication information. Guest mode available but does not save any data.
+- **WebSocket** - Used to send and receive messages between the LLM and server. Also used to send audio recordings to the transcription service and receive the transcription back.
 
 ## 🚀 AWS deliverable
 
