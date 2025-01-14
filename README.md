@@ -37,8 +37,8 @@ This squence diagram shows the flow of the application. The user uploads an audi
 ```mermaid
 sequenceDiagram
     actor User
-    box Website
-    box LLM
+    participant Website
+    participant LLM
 
     User->>Website: Upload audio recording
     Website->>Website: Transcribe audio
