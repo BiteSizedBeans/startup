@@ -43,7 +43,7 @@ sequenceDiagram
     User->>Website: Upload audio recording
     Website->>Website: Transcribe audio
     Website->>LLM: Upload to LLM
-    LLM->>Website: Display Transcript
+    LLM->>User: Display Transcript
     User->>Website: Ask questions
     Website->>User: Answer questions
 ```
