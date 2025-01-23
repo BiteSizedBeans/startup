@@ -76,7 +76,11 @@ I am going to use the required technologies in the following ways.
 
 For this deliverable I did the following. I checked the box `[x]` and added a description for things I completed.
 
+<<<<<<< HEAD
 - [x] **Server deployed and accessible with custom domain name** - [My server link](https://talkback.click).
+=======
+- [x] **Server deployed and accessible with custom domain name** - [TalkBack](https://talkback.click).
+>>>>>>> a291010aae6486bb45d471c37bd5911bdb582514
 
 ## 🚀 HTML deliverable
 
