@@ -86,11 +86,11 @@ For this deliverable I did the following. I checked the box `[x]` and added a de
 
 For this deliverable I did the following. I checked the box `[x]` and added a description for things I completed.
 
-- [ ] **HTML pages** - I did not complete this part of the deliverable.
-- [ ] **Proper HTML element usage** - I did not complete this part of the deliverable.
-- [ ] **Links** - I did not complete this part of the deliverable.
-- [ ] **Text** - I did not complete this part of the deliverable.
-- [ ] **3rd party API placeholder** - I did not complete this part of the deliverable.
+- [x] **HTML pages** - Three HTML pages. One for tha chat/home page, one for log in, and one to view your library.
+- [x] **Proper HTML element usage** - Body, Nav, Header, Main, Footer, Form, Input, Button, and Menu are all used correctly.
+- [x] **Links** - The links are functional and take the user to the correct page.
+- [x] **Text** - The text is functional and displays the correct information. Placeholders are used for the text that will be added by the user or by the LLM.
+- [x] **3rd party API placeholder** - The api placeholder is the chat history, currently represented by a paragraph tag.
 - [ ] **Images** - I did not complete this part of the deliverable.
 - [ ] **Login placeholder** - I did not complete this part of the deliverable.
 - [ ] **DB data placeholder** - I did not complete this part of the deliverable.
