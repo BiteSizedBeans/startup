@@ -91,8 +91,8 @@ For this deliverable I did the following. I checked the box `[x]` and added a de
 - [x] **Links** - The links are functional and take the user to the correct page.
 - [x] **Text** - The text is functional and displays the correct information. Placeholders are used for the text that will be added by the user or by the LLM.
 - [x] **3rd party API placeholder** - The api placeholder is the chat history, currently represented by a paragraph tag.
-- [ ] **Images** - I did not complete this part of the deliverable.
-- [ ] **Login placeholder** - I did not complete this part of the deliverable.
+- [x] **Images** - The logo is displayed on all pages as an image.
+- [x] **Login placeholder** - There is a placeholder for the login page.
 - [ ] **DB data placeholder** - I did not complete this part of the deliverable.
 - [ ] **WebSocket placeholder** - I did not complete this part of the deliverable.
 

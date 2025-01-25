@@ -10,8 +10,10 @@
 
 ## AWS Notes
 
-Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
+This was unnecessarily difficult. I got stuck on this step for like a week straight and couldn't figure out how to move past it. I was having issues with my billing information. Eventually I just gave up and used my mom's debit card 😂.
+
+It is nice though, being able to know how to use AWS to host and run my own server. If I'm being totally honest, I could probably still use another run through of the whole setup process before I felt super confident and solid about it all, but I think I'm okay. I'm grateful that I finally got something up and running.
 
 ## HTML Notes
 
-Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
+I enjoyed learning about Simon and the different elements in HTML. Typically I really hate HTML, although frankly that's probably just because I haven't used it a ton. The more I learn about it, and the more I learn about CSS, the more I worry that I'm really going to hate CSS.
