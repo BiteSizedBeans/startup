@@ -93,8 +93,8 @@ For this deliverable I did the following. I checked the box `[x]` and added a de
 - [x] **3rd party API placeholder** - The api placeholder is the chat history, currently represented by a paragraph tag.
 - [x] **Images** - The logo is displayed on all pages as an image.
 - [x] **Login placeholder** - There is a placeholder for the login page.
-- [ ] **DB data placeholder** - I did not complete this part of the deliverable.
-- [ ] **WebSocket placeholder** - I did not complete this part of the deliverable.
+- [x] **DB data placeholder** - The uploaded audio files are displayed via a placeholder in the library page.
+- [x] **WebSocket placeholder** - Realtime communication will be the chat interface and history. The LLM api will provide real time feedback to the user.
 
 ## 🚀 CSS deliverable
 
