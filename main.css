@@ -1,0 +1,73 @@
+main {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-between;
+    background-color: #fdf4dc;
+}
+.lexend-tera-100 {
+  font-family: "Lexend Tera", serif;
+  font-optical-sizing: auto;
+  font-weight: 100;
+  font-style: 20px
+}
+main menu {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+    width: 50%;
+    padding: 10px;
+}
+main button {
+    margin: 10px;
+    background-color: #AE9C88;
+    border-color: #AE9C88;
+    font-family: "Lexend Tera", serif;
+    font-weight: 200;
+    border-radius: 5px;
+} 
+main chat {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-between;
+    margin: 10px;
+    width: 75%;
+    min-height: 25px;
+    border-radius: 5px;
+    border-width: 2px;
+    border-style: solid;
+    border-color: #AE9C88;
+}
+main chat history {
+    width: 100%;
+    height: 100%;
+    border: none;
+}
+main chat history p left {
+    align-self: flex-start;
+}
+main chat history p right {
+    align-self: flex-end;
+}
+main chat form {
+    width: 100%;
+    height: 100%;
+    border: none;
+}
+main chat form input {
+    width: 100%;
+    height: 100%;
+    border: none;
+    outline: none;
+    display: flex;
+    padding: 10px;
+    box-sizing: border-box;
+    font-family: "Lexend Tera", serif;
+    background: #BCA691;
+}
+main chat form input::placeholder {
+    color: #4C4E4D;
+    font-weight: bold;
+}

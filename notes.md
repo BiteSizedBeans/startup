@@ -17,3 +17,7 @@ It is nice though, being able to know how to use AWS to host and run my own serv
 ## HTML Notes
 
 I enjoyed learning about Simon and the different elements in HTML. Typically I really hate HTML, although frankly that's probably just because I haven't used it a ton. The more I learn about it, and the more I learn about CSS, the more I worry that I'm really going to hate CSS.
+
+## CSS Notes
+
+It's been fun getting some practice in this. I've been surprised with how satisfied I am with how it turned out, I wasn't expecting that. I took a lot of time getting it to look like it wanted it to. I did take a really long time trying to figure out how to make text containers and imported fonts. I also figured out how to reference multiple CSS files on the same HTML page, which was super convinient.
