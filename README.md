@@ -80,7 +80,6 @@ For this deliverable I did the following. I checked the box `[x]` and added a de
 - [x] **Server deployed and accessible with custom domain name** - [My server link](https://talkback.click).
 =======
 - [x] **Server deployed and accessible with custom domain name** - [TalkBack](https://talkback.click).
->>>>>>> a291010aae6486bb45d471c37bd5911bdb582514
 
 ## 🚀 HTML deliverable
 
