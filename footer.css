@@ -1,0 +1,19 @@
+footer {
+    background-color: #fdf4dc;
+    color: #4C4845;
+    padding: 10px;
+    border-top-color: #ED7D3E;
+    border-top-width: 5px;
+    border-top-style: solid;
+    font-family: "Lexend Tera", serif;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+}
+.lexend-tera-100 {
+    font-family: "Lexend Tera", serif;
+    font-optical-sizing: auto;
+    font-weight: 100;
+    font-style: 20px;
+  }

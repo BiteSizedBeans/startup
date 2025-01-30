@@ -4,7 +4,7 @@ main {
     align-items: center;
     justify-content: flex-start;
     background-color: #fdf4dc;
-    min-height: 50vh;
+    min-height: 75vh;
 }
 .lexend-tera-100 {
   font-family: "Lexend Tera", serif;
