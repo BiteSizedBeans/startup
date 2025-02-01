@@ -1,0 +1,45 @@
+main {
+    display: flex;
+    flex-direction: column;
+    align-items: left;
+    justify-content: flex-start;
+    background-color: #fdf4dc;
+    min-height: 50vh;
+}
+.lexend-tera-100 {
+  font-family: "Lexend Tera", serif;
+  font-optical-sizing: auto;
+  font-weight: 100;
+  font-style: 20px;
+}
+
+form input {
+    font-family: "Lexend Tera", serif;
+    width: 225px;
+    margin: 10px;
+    margin-left: 75px;
+    background-color: #fdf4dc;
+    border: none;
+    border-bottom: 2px solid #AE9C88;
+}
+
+
+main button {
+    width: 225px;
+    margin: 10px;
+    margin-left: 75px;
+    background-color: #AE9C88;
+    border: none;
+    font-family: "Lexend Tera", serif;
+    font-weight: 200;
+    border-radius: 5px;
+    padding: 12px, 20px;
+    transition: background-color 0.3s ease;
+    outline: none;    
+} 
+main button:hover {
+    background-color: #caad92;
+}
+main button:active {
+    background-color: #AE9C88;
+}
