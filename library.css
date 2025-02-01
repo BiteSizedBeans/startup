@@ -1,8 +1,53 @@
 main {
-    display: flex-start;
+    display: flex;
     flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    height: 100vh;
+    align-items: left;
+    justify-content: flex-start;
     background-color: #fdf4dc;
+    min-height: 50vh;
+}
+.lexend-tera-100 {
+  font-family: "Lexend Tera", serif;
+  font-optical-sizing: auto;
+  font-weight: 100;
+  font-style: 20px;
+}
+main ul {
+    font-family: "Lexend Tera", serif;
+    font-weight: 100;
+    font-style: 20px;
+    color: #AE9C88;
+    margin-left: 100px
+}
+main ul li a {
+    color: #000000;
+    text-decoration: none;
+    font-weight: 200;
+    font-style: 20px;
+  }
+main ul li a:hover {
+    text-decoration: underline;
+    text-decoration-color: #ED7D3E;
+    text-decoration-thickness: 1px;
+    text-underline-offset: 2px;
+}
+
+main button {
+    width: 225px;
+    margin: 10px;
+    margin-left: 75px;
+    background-color: #AE9C88;
+    border: none;
+    font-family: "Lexend Tera", serif;
+    font-weight: 200;
+    border-radius: 5px;
+    padding: 12px, 20px;
+    transition: background-color 0.3s ease;
+    outline: none;    
+} 
+main button:hover {
+    background-color: #caad92;
+}
+main button:active {
+    background-color: #AE9C88;
 }
