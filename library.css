@@ -5,9 +5,11 @@ main {
     justify-content: flex-start;
     background-color: #fdf4dc;
     min-height: 50vh;
+    flex-wrap: wrap;
 }
 .lexend-tera-100 {
   font-family: "Lexend Tera", serif;
+
   font-optical-sizing: auto;
   font-weight: 100;
   font-style: 20px;
@@ -17,7 +19,7 @@ main ul {
     font-weight: 100;
     font-style: 20px;
     color: #AE9C88;
-    margin-left: 100px
+    margin-left: 10vw;
 }
 main ul li a {
     color: #000000;
@@ -33,15 +35,16 @@ main ul li a:hover {
 }
 
 main button {
-    width: 225px;
-    margin: 10px;
-    margin-left: 75px;
+    width: 18vw;
+    margin: 1em;
+    margin-left: 7vw;
     background-color: #AE9C88;
     border: none;
     font-family: "Lexend Tera", serif;
     font-weight: 200;
     border-radius: 5px;
     padding: 12px, 20px;
+
     transition: background-color 0.3s ease;
     outline: none;    
 } 
