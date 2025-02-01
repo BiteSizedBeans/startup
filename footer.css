@@ -17,3 +17,15 @@ footer {
     font-weight: 100;
     font-style: 20px;
   }
+footer p a {
+    color: #000000;
+    text-decoration: none;
+    font-weight: 400;
+    font-style: 20px;
+}
+footer p a:hover {
+    text-decoration: underline;
+    text-decoration-color: #ED7D3E;
+    text-decoration-thickness: 2px;
+    text-underline-offset: 5px;
+}
