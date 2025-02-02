@@ -20,4 +20,4 @@ I enjoyed learning about Simon and the different elements in HTML. Typically I r
 
 ## CSS Notes
 
-It's been fun getting some practice in this. I've been surprised with how satisfied I am with how it turned out, I wasn't expecting that. I took a lot of time getting it to look like it wanted it to. I did take a really long time trying to figure out how to make text containers and imported fonts. I also figured out how to reference multiple CSS files on the same HTML page, which was super convinient.
+It's been fun getting some practice in this. I've been surprised with how satisfied I am with how it turned out, I wasn't expecting that. I took a lot of time getting it to look like it wanted it to. I did take a really long time trying to figure out how to make text containers and imported fonts. I also figured out how to reference multiple CSS files on the same HTML page, which was super convinient. Getting it to be responsive was super difficult, but I think I got it down enough for it to be managable. I wish it was better, but I'm happy with it for now.
