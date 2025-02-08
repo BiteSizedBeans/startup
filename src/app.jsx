@@ -5,7 +5,7 @@ import './app.css';
 import { BrowserRouter, NavLink, Route, Routes } from 'react-router-dom';
 import { Library } from './library';
 import { Login } from './login';
-
+import { Home } from './home';
 
 export default function App() {
   return (
@@ -24,26 +24,14 @@ export default function App() {
             </menu>
           </nav>
         </div>
-
-
         <img src="TalkBackLogo.jpeg" alt="Talk Back Logo" width="100" height="100"></img>  
       </header>
-      <main>
-        <menu>
-          <button type="button" value="|Play Current File|">Play Current File</button>
-          <button type="button" value="|View Transcript|">View Transcript</button>
-        </menu>
-        <chat>
-          <history>
-            <p tag="left">&gt; Conversation History</p>
-            <p tag="right">Conversation History &lt;</p>
-          </history>
-          <form id="input-form">
-
-            <input type="text" placeholder="Ask a Question..." id="input-field"></input>
-          </form>
-        </chat>
-      </main>
+      <Routes>
+        <Route path='/' element={<Home />} exact />
+        <Route path='/library' element={<Library />} />
+        <Route path='/login' element={<Login />} />
+        <Route path='*' element={<NotFound />} />
+      </Routes>
       <footer>
         <p>Thomas Bean</p>
         <p><a href="https://github.com/BiteSizedBeans/startup.git">Github</a></p>
@@ -51,4 +39,7 @@ export default function App() {
     </div>
     </BrowserRouter>
   );
+}
+function NotFound() {
+  return <main className='container-fluid bg-secondary text-center'>404: Return to sender. Address unknown.</main>;
 }
