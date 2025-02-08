@@ -1,6 +1,9 @@
-export default function Home() {
+import React from 'react';
+
+export function Home() {
   return (
     <main>
+
         <menu>
           <button type="button" value="|Play Current File|">Play Current File</button>
           <button type="button" value="|View Transcript|">View Transcript</button>
