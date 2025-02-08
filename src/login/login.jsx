@@ -2,8 +2,12 @@ import React from 'react';
 
 export function Login() {
   return (
-    <main className='container-fluid bg-secondary text-center'>
-      <div>login displayed here</div>
+    <main>
+        <form>
+            <input type="text" placeholder="Username" />
+            <input type="password" placeholder="Password" />
+            <button type="submit">Login/Sign Up</button>
+        </form>
     </main>
   );
 }
