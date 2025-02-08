@@ -21,3 +21,7 @@ I enjoyed learning about Simon and the different elements in HTML. Typically I r
 ## CSS Notes
 
 It's been fun getting some practice in this. I've been surprised with how satisfied I am with how it turned out, I wasn't expecting that. I took a lot of time getting it to look like it wanted it to. I did take a really long time trying to figure out how to make text containers and imported fonts. I also figured out how to reference multiple CSS files on the same HTML page, which was super convinient. Getting it to be responsive was super difficult, but I think I got it down enough for it to be managable. I wish it was better, but I'm happy with it for now.
+
+## React Notes Pt 1
+
+This was different. Honestly it took me a long time before I even felt like I was remotly understanding what was going on. Right now I have averything in one big CSS sheet, and intuition says that's not very smart lol. I'd be interested to see how most people do it. I think one of the reasons it was so hard was because I'm not using bootstrap, so I had to do all the styling myself.
