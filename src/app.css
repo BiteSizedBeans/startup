@@ -1,11 +1,10 @@
-main {
+.main {
     display: flex;
     flex-direction: column;
     align-items: center;
     justify-content: flex-start;
     background-color: #fdf4dc;
     min-height: 75vh;
-
     flex-wrap: wrap;
 }
 .lexend-tera-100 {
@@ -42,11 +41,9 @@ main button {
 main button:hover {
     background-color: #caad92;
 }
-
 main button:active {
     background-color: #AE9C88;
 }
-
 main chat {
     display: flex;
     flex-direction: column;
@@ -66,25 +63,20 @@ main chat history {
     height: 100%;
     border: none;
 }
-
 main chat history p left {
     align-self: flex-start;
     flex-wrap: wrap;
 }
-
 main chat history p right {
     align-self: flex-end;
     flex-wrap: wrap;
 }
-
-main chat form {
+.chat-form {
     width: 100%;
     height: 100%;
     border: none;
 }
-
-
-main chat form input {
+.chat-form-input {
     width: 100%;
     height: 100%;
     border: none;
@@ -93,19 +85,76 @@ main chat form input {
     padding: 10px;
 
 
+
+
     box-sizing: border-box;
     font-family: "Lexend Tera", serif;
     background: #BCA691;
     flex-wrap: wrap;
 }
-main chat form input::placeholder {
+.chat-form-input::placeholder {
     color: #4C4E4D;
     font-weight: bold;
     flex-wrap: wrap;
 }
 
+
+
+.main-lib{
+    display: flex;
+    flex-direction: column;
+    align-items: left;
+    justify-content: flex-start;
+    background-color: #fdf4dc;
+    min-height: 50vh;
+    flex-wrap: wrap;
+}
+main ul {
+    align-items: left;
+    font-family: "Lexend Tera", serif;
+    font-weight: 100;
+    font-style: 20px;
+    color: #AE9C88;
+    margin-left: 2vw;
+    margin-top: 2vh;
+}
+main ul li a {
+    color: #000000;
+    text-decoration: none;
+    font-weight: 200;
+    font-style: 20px;
+  }
+main ul li a:hover {
+    text-decoration: underline;
+    text-decoration-color: #ED7D3E;
+    text-decoration-thickness: 1px;
+    text-underline-offset: 2px;
+}
+
+.login-form{
+    display: flex;
+    flex-direction: row;
+    align-items: flex-start;
+    justify-content: flex-start;
+    flex-wrap: wrap;
+}
+.login-form input {
+    flex: 1;
+    min-width: 15vw;
+    font-family: "Lexend Tera", serif;
+    width: 25vw;
+    margin: 0.5vw;
+    margin-left: 5vw;
+
+    background-color: #fdf4dc;
+    border: none;
+    border-bottom: 2px solid #AE9C88;
+
+}
+
 header {
     display: flex;
+
     flex-direction: row;
     align-items: center;
     background-color: #AE9C88;
@@ -182,6 +231,7 @@ header {
     margin-right: auto;
     
   }
+
   footer {
     background-color: #fdf4dc;
     color: #4C4845;

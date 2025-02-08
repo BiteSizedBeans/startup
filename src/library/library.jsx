@@ -2,8 +2,7 @@ import React from 'react';
 
 export function Library() {
   return (
-    <main>
-        <link rel="stylesheet" href="library.css" />
+    <main className='main-lib'>
         <ul>
             <li><a href="index.html">File1.mp3</a></li>
             <li><a href="index.html">File2.mp3</a></li>
