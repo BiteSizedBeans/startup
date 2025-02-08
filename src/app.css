@@ -14,6 +14,7 @@ main {
   font-weight: 100;
   font-style: 20px;
 }
+
 main menu {
     display: flex;
     flex-direction: row;
@@ -138,8 +139,10 @@ header {
     margin-bottom: px;
   }
   nav p {
+    display: flex;
     margin-top: 0px;
     margin-bottom: 0px;
+    gap: 1vw;
     font-family: "Lexend Tera", serif;
     color: #000000;
     font-optical-sizing: auto;
@@ -151,6 +154,7 @@ header {
     text-decoration: none;
     font-weight: 200;
     font-style: 20px;
+    font-size: 2vw;
   }
   nav p a:hover {
     text-decoration: underline;

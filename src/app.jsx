@@ -2,24 +2,30 @@ import React from 'react';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import './app.css';
 
+import { BrowserRouter, NavLink, Route, Routes } from 'react-router-dom';
+import { Library } from './library';
+import { Login } from './login';
 
 
 export default function App() {
   return (
+    <BrowserRouter>
     <div>
       <style>
         @import url('https://fonts.googleapis.com/css2?family=Lexend+Tera:wght@100..900&display=swap');
+
       </style>
       <header>
         <div className="text-container">
           <h1>Talk Back</h1>
           <nav>
-
             <menu>
-              <p><a href="index.html">Home</a> | <a href="library.html">Library</a> | <a href="login.html">Log in</a></p>
+              <p><NavLink className='nav-link' to='/'>Home</NavLink> | <NavLink className='nav-link' to='/library'>Library</NavLink> | <NavLink className='nav-link' to='/login'>Login</NavLink></p>
             </menu>
           </nav>
         </div>
+
+
         <img src="TalkBackLogo.jpeg" alt="Talk Back Logo" width="100" height="100"></img>  
       </header>
       <main>
@@ -43,5 +49,6 @@ export default function App() {
         <p><a href="https://github.com/BiteSizedBeans/startup.git">Github</a></p>
       </footer>
     </div>
+    </BrowserRouter>
   );
 }
