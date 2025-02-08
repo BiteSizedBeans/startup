@@ -1,10 +1,11 @@
-main {
+.main {
     display: flex;
     flex-direction: column;
     align-items: center;
     justify-content: flex-start;
     background-color: #fdf4dc;
     min-height: 75vh;
+
     flex-wrap: wrap;
 }
 .lexend-tera-100 {
@@ -13,20 +14,22 @@ main {
   font-weight: 100;
   font-style: 20px;
 }
-main menu {
+.main menu {
     display: flex;
     flex-direction: row;
     align-items: center;
     justify-content: space-between;
     width: 50%;
     padding: 10px;
+
 }
-main button {
+.main button {
     margin: 10px;
     background-color: #AE9C88;
     border: none;
     font-family: "Lexend Tera", serif;
     font-weight: 200;
+
     border-radius: 5px;
     padding: 12px, 20px;
     transition: background-color 0.3s ease;
@@ -35,18 +38,21 @@ main button {
     max-width: 200px;
     flex-wrap: wrap;
 } 
-main button:hover {
+.main button:hover {
     background-color: #caad92;
 }
-main button:active {
+
+.main button:active {
     background-color: #AE9C88;
 }
-main chat {
+
+.main chat {
     display: flex;
     flex-direction: column;
     align-items: center;
     justify-content: space-between;
     margin: 10px;
+
     width: 75%;
     min-height: 25px;
     border-radius: 5px;
@@ -54,40 +60,46 @@ main chat {
     border-style: solid;
     border-color: #AE9C88;
 }
-main chat history {
+.main chat history {
     width: 100%;
     height: 100%;
     border: none;
 }
-main chat history p left {
+
+.main chat history p left {
     align-self: flex-start;
     flex-wrap: wrap;
 }
-main chat history p right {
+
+.main chat history p right {
     align-self: flex-end;
     flex-wrap: wrap;
 }
 
-main chat form {
+
+.main chat form {
     width: 100%;
     height: 100%;
     border: none;
 }
-main chat form input {
+
+.main chat form input {
     width: 100%;
     height: 100%;
     border: none;
     outline: none;
     display: flex;
     padding: 10px;
+
     box-sizing: border-box;
     font-family: "Lexend Tera", serif;
     background: #BCA691;
     flex-wrap: wrap;
 }
-main chat form input::placeholder {
+.main chat form input::placeholder {
     color: #4C4E4D;
     font-weight: bold;
     flex-wrap: wrap;
 }
+
 
