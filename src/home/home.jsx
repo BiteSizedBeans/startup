@@ -15,7 +15,7 @@ export function Home() {
             <Response response={response} question={question} setResponse={setResponse} />
           </history>
           <form className="chat-form">
-            <SubmitQuestion setQuestion={setQuestion} />
+            <SubmitQuestion question={question} setQuestion={setQuestion} />
           </form>
         </chat>
     </main>
