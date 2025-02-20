@@ -1,18 +1,15 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 
-export function Response({response, question, setResponse}) {
-if (question) {
-    setResponse('This is an example response');
+export function Response({response, question, setResponse, setQuestion}) {
+    useEffect(() => {
+        if (question) {
+            setResponse(response + 'This is an example response\n');
+            setQuestion('');
+        }
+    }, [question]);
     return (
         <div>
-                <p>{response}</p>
-            </div>
-        );
-    } else {
-        return (
-            <div>
-                <p></p>
-            </div>
-        );
-    }
+            <p dangerouslySetInnerHTML={{ __html: response.replace(/\n/g, '<br />') }}></p>
+        </div>
+    );
 }

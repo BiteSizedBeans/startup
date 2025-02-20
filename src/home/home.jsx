@@ -12,7 +12,7 @@ export function Home() {
         </menu>
         <chat>
           <history>
-            <Response response={response} question={question} setResponse={setResponse} />
+            <Response response={response} question={question} setResponse={setResponse} setQuestion={setQuestion} />
           </history>
           <form className="chat-form">
             <SubmitQuestion question={question} setQuestion={setQuestion} />
