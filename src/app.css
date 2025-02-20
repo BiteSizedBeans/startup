@@ -44,6 +44,13 @@ main button:hover {
 main button:active {
     background-color: #AE9C88;
 }
+main p {
+    font-family: "Lexend Tera", serif;
+    font-weight: 200;
+    font-style: 20px;
+    color:#000000;
+    text-align: center;
+}
 main chat {
     display: flex;
     flex-direction: column;
