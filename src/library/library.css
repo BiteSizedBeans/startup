@@ -36,7 +36,7 @@ main ul li a {
     text-decoration: none;
     font-weight: 200;
     font-style: 20px;
-  }
+}
 main ul li a:hover {
     text-decoration: underline;
     text-decoration-color: #ED7D3E;
