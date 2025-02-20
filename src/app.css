@@ -114,6 +114,35 @@ main chat history p right {
     min-height: 50vh;
     flex-wrap: wrap;
 }
+.file-input {
+    display: none; /* Hide the default file input */
+}
+
+.upload-button {
+    margin: 10px;
+    background-color: #AE9C88;
+    border: none;
+    font-family: "Lexend Tera", serif;
+    font-weight: 200;
+    border-radius: 5px;
+    padding: 12px 20px;
+    transition: background-color 0.3s ease;
+    outline: none;
+    width: 25%;
+    max-width: 200px;
+    color: black;
+    cursor: pointer;
+    text-align: center;
+    display: inline-block;
+}
+
+.upload-button:hover {
+    background-color: #caad92;
+}
+
+.upload-button:active {
+    background-color: #AE9C88;
+}
 main ul {
     align-items: left;
     font-family: "Lexend Tera", serif;
