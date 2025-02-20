@@ -1,6 +1,9 @@
 import React from 'react';
 
 export function Login() {
+  localStorage.setItem('userName', 'Thomas');
+  const userName = localStorage.getItem('userName');
+
   return (
     <main className='main'>
         <form className='login-form'>

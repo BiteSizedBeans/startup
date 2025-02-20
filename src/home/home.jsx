@@ -1,6 +1,9 @@
-import React from 'react';
-
+import React, { useState } from 'react';
+import { Response } from './response';
+import { SubmitQuestion } from './submitQuestion';
 export function Home() {
+  const [response, setResponse] = useState('');
+  const [question, setQuestion] = useState('');
   return (
     <main className='main'>
         <menu>
@@ -9,11 +12,10 @@ export function Home() {
         </menu>
         <chat>
           <history>
-            <p tag="left">&gt; Conversation History</p>
-            <p tag="right">Conversation History &lt;</p>
+            <Response response={response} question={question} setResponse={setResponse} />
           </history>
           <form className="chat-form">
-            <input className="chat-form-input" type="text" placeholder="Ask a Question..." id="input-field"></input>
+            <SubmitQuestion setQuestion={setQuestion} />
           </form>
         </chat>
     </main>
