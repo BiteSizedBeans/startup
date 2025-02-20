@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useEffect } from 'react';
 
 export function Response({response, question, setResponse, setQuestion}) {
     useEffect(() => {
