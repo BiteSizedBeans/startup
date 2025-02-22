@@ -191,6 +191,21 @@ main ul li a:hover {
     border-bottom: 2px solid #AE9C88;
 
 }
+.login-warning {
+    width: 100vw;
+    height: 4vh;
+    border-bottom: 2px solid #AE9C88;
+    border-bottom-width: 2px;
+    border-bottom-style: solid;
+    border-bottom-color: red;
+    
+}
+.login-warning p {
+    font-family: "Lexend Tera", serif;
+    font-weight: 400;
+    font-style: 20px;
+    color: red;
+}
 
 header {
     display: flex;
@@ -204,73 +219,73 @@ header {
     border-bottom-width: 10px;
     border-bottom-style: solid;
     flex-wrap: wrap;
-  }
-  .lexend-tera-100 {
-      font-family: "Lexend Tera", serif;
-      font-optical-sizing: auto;
-      font-weight: 200;
-      font-style: 20px
-    }
-  header .text-container {
-      display: flex;
-      flex-direction: column;
-      align-items: flex-start;
-  }
-  nav {
-    margin-top: 10px;
-    margin-bottom: 10px;
-    justify-content: flex-start;
-    align-items: flex-start;
-    width: 100%;
-  }
-  nav menu {
-    margin-top: 0px;
-    margin-bottom: px;
-  }
-  nav p {
-    display: flex;
-    margin-top: 0px;
-    margin-bottom: 0px;
-    gap: 1vw;
+}
+.lexend-tera-100 {
     font-family: "Lexend Tera", serif;
-    color: #000000;
     font-optical-sizing: auto;
-    font-weight: 100;
-    font-style: 20px
-  }
-  nav p a {
-    color: #000000;
-    text-decoration: none;
     font-weight: 200;
-    font-style: 20px;
-    font-size: 2vw;
-  }
-  nav p a:hover {
-    text-decoration: underline;
-    text-decoration-color: #ED7D3E;
-    text-decoration-thickness: 2px;
-    text-underline-offset: 5px;
-  }
-  h1 {
-    font-size: 6vw;
-    font-weight: bold;
-    font-family: "Lexend Tera", serif;
-    align-items: center;
-    justify-content: space-between;
-    margin-top: 10px;
-    margin-bottom: 10px;
-  }
-  img {
-    width: 15%;
-    height: auto;
-    border-radius: 50%;
-    box-shadow: 0 0 10px 0 rgba(0, 0, 0, 0.5);
-    align-items: center;
-    justify-content: space-between;
-    margin-left: auto;
-    margin-right: auto;
-    
-  }
+    font-style: 20px
+}
+header .text-container {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+}
+nav {
+margin-top: 10px;
+margin-bottom: 10px;
+justify-content: flex-start;
+align-items: flex-start;
+width: 100%;
+}
+nav menu {
+margin-top: 0px;
+margin-bottom: px;
+}
+nav p {
+display: flex;
+margin-top: 0px;
+margin-bottom: 0px;
+gap: 1vw;
+font-family: "Lexend Tera", serif;
+color: #000000;
+font-optical-sizing: auto;
+font-weight: 100;
+font-style: 20px
+}
+nav p a {
+color: #000000;
+text-decoration: none;
+font-weight: 200;
+font-style: 20px;
+font-size: 2vw;
+}
+nav p a:hover {
+text-decoration: underline;
+text-decoration-color: #ED7D3E;
+text-decoration-thickness: 2px;
+text-underline-offset: 5px;
+}
+h1 {
+font-size: 6vw;
+font-weight: bold;
+font-family: "Lexend Tera", serif;
+align-items: center;
+justify-content: space-between;
+margin-top: 10px;
+margin-bottom: 10px;
+}
+img {
+width: 15%;
+height: auto;
+border-radius: 50%;
+box-shadow: 0 0 10px 0 rgba(0, 0, 0, 0.5);
+align-items: center;
+justify-content: space-between;
+margin-left: auto;
+margin-right: auto;
+
+}
 
   footer {
     background-color: #fdf4dc;
