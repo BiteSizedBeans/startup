@@ -19,23 +19,36 @@ main menu {
     flex-direction: row;
     align-items: center;
     justify-content: space-between;
-    width: 50%;
+    width: 40vw;
     padding: 10px;
 
 }
+@media (max-width: 1075px) {
+    main menu {
+        width: 75vw;
+    }
+}
+@media (max-width: 350px) {
+    main menu {
+        flex-direction: column;
+        height: 18vh;
+    }
+}
 main button {
-    margin: 10px;
+    margin: 0;
     background-color: #AE9C88;
     border: none;
     font-family: "Lexend Tera", serif;
     font-weight: 200;
+    text-align: center;
 
     border-radius: 5px;
     padding: 12px, 20px;
     transition: background-color 0.3s ease;
     outline: none;   
-    width: 25%;
+    width: 25vw;
     max-width: 200px;
+    min-width: 120px;
     flex-wrap: wrap;
 } 
 main button:hover {
@@ -124,21 +137,21 @@ main chat history p right {
 }
 
 .upload-button {
-    margin: 10px;
+    margin-left: 3vw;
     background-color: #AE9C88;
     border: none;
     font-family: "Lexend Tera", serif;
     font-weight: 200;
-    border-radius: 5px;
-    padding: 12px 20px;
-    transition: background-color 0.3s ease;
-    outline: none;
-    width: 25%;
-    max-width: 200px;
-    color: black;
-    cursor: pointer;
     text-align: center;
-    display: inline-block;
+
+    border-radius: 5px;
+    padding: 12px, 20px;
+    transition: background-color 0.3s ease;
+    outline: none;   
+    width: 25vw;
+    max-width: 200px;
+    min-width: 120px;
+    flex-wrap: wrap;
 }
 
 .upload-button:hover {
@@ -182,13 +195,19 @@ main ul li a:hover {
     justify-content: flex-start;
     flex-wrap: wrap;
 }
+@media (max-width: 850px) {
+    .login-form {
+        flex-direction: column;
+    }
+}
 .login-form input {
     flex: 1;
-    min-width: 15vw;
+    min-width: 120px;
     font-family: "Lexend Tera", serif;
     width: 25vw;
     margin: 0.5vw;
-    margin-left: 5vw;
+    margin-left: 0;
+    align-items: center;
 
     background-color: #fdf4dc;
     border: none;
@@ -196,13 +215,7 @@ main ul li a:hover {
 
 }
 .login-warning {
-    width: 100vw;
-    height: 4vh;
-    border-bottom: 2px solid #AE9C88;
-    border-bottom-width: 2px;
-    border-bottom-style: solid;
-    border-bottom-color: red;
-    
+    width: 100vw;    
 }
 .login-warning p {
     font-family: "Lexend Tera", serif;
@@ -210,13 +223,29 @@ main ul li a:hover {
     font-style: 20px;
     color: red;
     text-align: center;
+    border-bottom: 2px solid #AE9C88;
+    border-bottom-width: 2px;
+    border-bottom-style: solid;
+    border-bottom-color: red;
 }
 .login-status {
+    margin-top: 1vw;
     display: flex;
     flex-direction: row;
     align-items: center;
     justify-content: center;
     flex-wrap: wrap;
+}
+@media (max-width: 800px) {
+    .login-status {
+        flex-direction: column;
+    }
+    .login-status p {
+        min-width: 175px;
+    }
+    .login-status button {
+        min-width: 175px;
+    }
 }
 .login-status p {
     flex: 1;
@@ -262,6 +291,7 @@ margin-bottom: px;
 }
 nav p {
 display: flex;
+flex-direction: row;
 margin-top: 0px;
 margin-bottom: 0px;
 gap: 1vw;
@@ -270,6 +300,11 @@ color: #000000;
 font-optical-sizing: auto;
 font-weight: 100;
 font-style: 20px
+}
+@media (max-width: 350px) {
+    nav p {
+        flex-direction: column;
+    }
 }
 nav p a {
 color: #000000;

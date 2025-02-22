@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { LoginWarning } from './loginWarning';
 import { useLogin } from './loginContext';
 
@@ -9,10 +9,18 @@ export function Login() {
   const [displayName, setDisplayName] = useState('');
   const { isLoggedIn, setIsLoggedIn } = useLogin();
 
+  useEffect(() => {
+    const storedDisplayName = localStorage.getItem('displayName');
+    if (storedDisplayName) {
+      setDisplayName(storedDisplayName);
+    }
+  }, []);
+
   const handleLogin = (e) => {
     e.preventDefault();
     localStorage.setItem('userName', userName);
     localStorage.setItem('password', password);
+    localStorage.setItem('displayName', userName);
     setDisplayName(userName);
     setIsLoggedIn(true);
     setUserName('');
@@ -22,6 +30,7 @@ export function Login() {
   const handleLogout = () => {
     setIsLoggedIn(false);
     setDisplayName('');
+    localStorage.removeItem('displayName');
   }
 
   return (
@@ -32,7 +41,7 @@ export function Login() {
           <form className='login-form'>
             <input type="text" placeholder="Username" value={userName} onChange={(e) => setUserName(e.target.value)} />
             <input type="password" placeholder="Password" value={password} onChange={(e) => setPassword(e.target.value)} />
-            <button type="submit" onClick={handleLogin}>Login/Sign Up</button>
+            <button type="submit" onClick={handleLogin}>Login / Sign Up</button>
           </form>
         </>
       )}

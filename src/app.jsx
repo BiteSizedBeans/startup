@@ -24,8 +24,8 @@ export default function App() {
               <nav>
                 <menu>
                   <p>
-                    <NavLink className='nav-link active' to=''>Home</NavLink> | 
-                    <NavLink className='nav-link' to='library'>Library</NavLink> | 
+                    <NavLink className='nav-link active' to=''>Home |</NavLink> 
+                    <NavLink className='nav-link' to='library'>Library |</NavLink> 
                     <NavLink className='nav-link' to='login'>Login</NavLink></p>
                 </menu>
               </nav>
