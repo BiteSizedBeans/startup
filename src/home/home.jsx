@@ -1,4 +1,4 @@
-import React, { useState, useContext } from 'react';
+import React, { useState, useContext, useRef, useEffect } from 'react';
 import { Response } from './response';
 import { SubmitQuestion } from './submitQuestion';
 import { FileContext } from '../library/files';
@@ -41,7 +41,7 @@ export function Home() {
         {playCurrentFile && (
           <div>
             <p>{currentFile.name || 'Default File'}</p>
-            <audio src={audioSrc} controls />
+            <audio ref={audioRef} controls />
           </div>
         )}
         {showTranscript && (
