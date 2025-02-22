@@ -18,13 +18,17 @@ export function Login() {
 
   const handleLogin = (e) => {
     e.preventDefault();
-    localStorage.setItem('userName', userName);
-    localStorage.setItem('password', password);
-    localStorage.setItem('displayName', userName);
-    setDisplayName(userName);
-    setIsLoggedIn(true);
-    setUserName('');
-    setPassword('');
+    if (userName && password) {
+      localStorage.setItem('userName', userName);
+      localStorage.setItem('password', password);
+      localStorage.setItem('displayName', userName);
+      setDisplayName(userName);
+      setIsLoggedIn(true);
+      setUserName('');
+      setPassword('');
+    } else {
+      alert('Please enter a valid username and password');
+    }
   }
 
   const handleLogout = () => {
