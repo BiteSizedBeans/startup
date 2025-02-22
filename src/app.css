@@ -111,8 +111,13 @@ main chat history p right {
     align-items: left;
     justify-content: flex-start;
     background-color: #fdf4dc;
-    min-height: 50vh;
+    min-height: 75vh;
     flex-wrap: wrap;
+}
+.main-lib p {
+    text-align: left;
+    padding-left: 0px;
+    margin-left: 0px;
 }
 .file-input {
     display: none; /* Hide the default file input */
@@ -149,7 +154,6 @@ main ul {
     font-weight: 100;
     font-style: 20px;
     color: #AE9C88;
-    margin-left: 2vw;
     margin-top: 2vh;
 }
 main ul li a {
@@ -205,6 +209,7 @@ main ul li a:hover {
     font-weight: 400;
     font-style: 20px;
     color: red;
+    text-align: center;
 }
 .login-status {
     display: flex;
@@ -238,12 +243,6 @@ header {
     border-bottom-width: 10px;
     border-bottom-style: solid;
     flex-wrap: wrap;
-}
-.lexend-tera-100 {
-    font-family: "Lexend Tera", serif;
-    font-optical-sizing: auto;
-    font-weight: 200;
-    font-style: 20px
 }
 header .text-container {
     display: flex;

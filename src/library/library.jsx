@@ -12,11 +12,12 @@ export function Library() {
     <main className='main-lib'>
       {!isLoggedIn && <LoginWarning />}
         <ul>
-            {files.map((file, index) => (
-                <li key={index}>
-                    <NavLink className='nav-link' to='/' onClick={() => setCurrentFile(file)}>{file.name}</NavLink>
-                </li>
-            ))}
+          {files.length === 0 && <p>No uploaded files... yet</p>}
+          {files.map((file, index) => (
+            <li key={index}>
+              <NavLink className='nav-link' to='/' onClick={() => setCurrentFile(file)}>{file.name}</NavLink>
+            </li>
+          ))}
         </ul>
         <Upload />
     </main>
