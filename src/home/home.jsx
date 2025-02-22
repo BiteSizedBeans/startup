@@ -41,7 +41,7 @@ export function Home() {
         {playCurrentFile && (
           <div>
             <p>{currentFile.name || 'Default File'}</p>
-            <audio ref={audioRef} controls />
+            <audio src={audioSrc} controls />
           </div>
         )}
         {showTranscript && (
