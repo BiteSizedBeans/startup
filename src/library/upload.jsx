@@ -7,7 +7,7 @@ export function Upload() {
     const handleFileUpload = (event) => {
         const file = event.target.files[0];
         if (file && file.type === 'audio/mpeg') {
-            setFiles(prevFiles => [...prevFiles, file.name]);
+            setFiles(prevFiles => [...prevFiles, file]);
         } else {
             alert('Please upload a valid audio file');
         }

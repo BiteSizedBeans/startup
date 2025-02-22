@@ -1,12 +1,14 @@
-import React, { useState } from 'react';
+import React, { useState, useContext } from 'react';
 import { Response } from './response';
 import { SubmitQuestion } from './submitQuestion';
+import { FileContext } from '../library/files';
+
 export function Home() {
+  const { currentFile } = useContext(FileContext);
   const [response, setResponse] = useState('');
   const [question, setQuestion] = useState('');
   const [showTranscript, setShowTranscript] = useState(false);
   const [playCurrentFile, setPlayCurrentFile] = useState(false);
-  const [currentFile, setCurrentFile] = useState('No File Selected');
 
   const toggleTranscript = () => {
     setShowTranscript(!showTranscript);
@@ -16,15 +18,21 @@ export function Home() {
     setPlayCurrentFile(!playCurrentFile);
   }
 
+  const audioSrc = typeof currentFile === 'string' 
+    ? currentFile
+    : currentFile instanceof File
+      ? URL.createObjectURL(currentFile)
+      : '';
+
   return (
     <main className='main'>
         <menu>
-          <button type="button" value="|Play Current File|" 
+          <button type="button" value="Play Current File" 
           onClick={(e) => {
             e.preventDefault();
             togglePlayCurrentFile();
           }}>Play Current File</button>
-          <button type="button" value="|View Transcript|" 
+          <button type="button" value="View Transcript" 
           onClick={(e) => {
             e.preventDefault();
             toggleTranscript();
@@ -32,8 +40,8 @@ export function Home() {
         </menu>
         {playCurrentFile && (
           <div>
-            <p>{currentFile}</p>
-            <audio src="../../../public/roll.mp3" controls />
+            <p>{currentFile.name || 'Default File'}</p>
+            <audio src={audioSrc} controls />
           </div>
         )}
         {showTranscript && (
