@@ -7,9 +7,11 @@ import { Library } from './library/library';
 import { Login } from './login/login';
 import { Home } from './home/home';
 import { FileProvider } from './library/files';
+import { LoginProvider } from './login/loginContext';
 
 export default function App() {
   return (
+    <LoginProvider>
     <FileProvider>
       <BrowserRouter>
         <div>
@@ -45,6 +47,7 @@ export default function App() {
         </div>
       </BrowserRouter>
     </FileProvider>
+    </LoginProvider>
   );
 }
 function NotFound() {

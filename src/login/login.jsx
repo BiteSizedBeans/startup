@@ -1,25 +1,22 @@
 import React, { useState } from 'react';
+import { LoginWarning } from './loginWarning';
+import { useLogin } from './loginContext';
+
 
 export function Login() {
   const [userName, setUserName] = useState('');
   const [password, setPassword] = useState('');
-  const [isLoggedIn, setIsLoggedIn] = useState(false);
+  const { isLoggedIn } = useLogin();
 
   const handleLogin = () => {
     localStorage.setItem('userName', userName);
     localStorage.setItem('password', password);
-    setIsLoggedIn(true);
+    login();
   }
 
   return (
     <main className='main'>
-        {!isLoggedIn && (
-          <div className='login-warning'>
-            <p>Uploaded files, chat history, and transcripts will not be saved without logging in.</p>
-          </div>
-        )
-          
-        }
+        {!isLoggedIn && <LoginWarning />}
         <form className='login-form'>
             <input type="text" placeholder="Username" value={userName} onChange={(e) => setUserName(e.target.value)} />
             <input type="password" placeholder="Password" value={password} onChange={(e) => setPassword(e.target.value)} />
