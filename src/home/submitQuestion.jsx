@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 
-export function SubmitQuestion({question, setQuestion}) {
+export function SubmitQuestion({setQuestion}) {
     const [inputValue, setInputValue] = useState('');
     
     const handleKeyPress = (event) => {
