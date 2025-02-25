@@ -25,3 +25,7 @@ It's been fun getting some practice in this. I've been surprised with how satisf
 ## React Notes Pt 1
 
 This was different. Honestly it took me a long time before I even felt like I was remotly understanding what was going on. Right now I have averything in one big CSS sheet, and intuition says that's not very smart lol. I'd be interested to see how most people do it. I think one of the reasons it was so hard was because I'm not using bootstrap, so I had to do all the styling myself.
+
+## React Notes Pt 2
+
+This was wild. I think I got it down as long as I have my usestates and use effects localized to individual pages. I have a couple pieces of data that need to be remembered across multiple pages and I ended up using the use context stuff for that. It got kinda messy but it works! The only thing that doesn't work now (other than API calls and stored/processed username and stuff) is making sure that chat history gets saved to the currently selected file. I think some of the use context stuff I have set up now will also probably eventually end up stored in a database and not locally, but idk tbh.
