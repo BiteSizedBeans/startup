@@ -8,7 +8,7 @@ app.use('/api', apiRouter);
 
 var response = {
     "status": "success",
-    "message": "This is an example response\n"
+    "message": "This is another example response\n"
 }
 
 apiRouter.get('/response', (req, res) => {
