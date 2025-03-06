@@ -5,7 +5,7 @@ import { FileContext } from '../library/files';
 
 export function Home() {
   const { currentFile } = useContext(FileContext);
-  const [response, setResponse] = useState('');
+  const [history, setResponse] = useState('');
   const [question, setQuestion] = useState('');
   const [showTranscript, setShowTranscript] = useState(false);
   const [playCurrentFile, setPlayCurrentFile] = useState(false);
@@ -49,7 +49,7 @@ export function Home() {
         )}
         <chat>
           <history>
-            <Response response={response} question={question} setResponse={setResponse} setQuestion={setQuestion} />
+            <Response history={history} question={question} setResponse={setResponse} setQuestion={setQuestion} />
           </history>
           <form className="chat-form">
             <SubmitQuestion question={question} setQuestion={setQuestion} />

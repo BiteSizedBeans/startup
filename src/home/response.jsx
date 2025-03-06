@@ -1,15 +1,21 @@
 import React, { useEffect } from 'react';
 
-export function Response({response, question, setResponse, setQuestion}) {
+export function Response({history, question, setResponse, setQuestion}) {
     useEffect(() => {
-        if (question) {
-            setResponse(response + 'This is an example response\n');
-            setQuestion('');
+            if (question) {
+                fetch('/api/response', {
+                    method: 'GET',
+                })
+                .then(response => response.text())
+                .then(data => {
+                    setResponse(history + data);
+                });
+                setQuestion('');
         }
     }, [question]);
     return (
         <div>
-            <p dangerouslySetInnerHTML={{ __html: response.replace(/\n/g, '<br />') }}></p>
+            <p dangerouslySetInnerHTML={{ __html: history.replace(/\n/g, '<br />') }}></p>
         </div>
     );
 }
