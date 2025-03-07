@@ -35,6 +35,27 @@ export function Login({isLoggedIn, setIsLoggedIn}) {
     localStorage.removeItem('displayName');
   }
 
+  const handleSignUp = async (e) => {
+    e.preventDefault();
+    if (userName && password) {
+      const response = await fetch('api/signup', {
+        method: 'post',
+        body: JSON.stringify({ userName: userName, password: password }),
+        headers: {
+          'Content-type': 'application/json; charset=UTF-8',
+        },
+      });
+      const data = await response.json();
+      if (data.status === 'success') {
+        localStorage.setItem('userName', userName);
+        localStorage.setItem('password', password);
+        localStorage.setItem('displayName', userName);
+        setDisplayName(userName);
+        setIsLoggedIn(true);
+      }
+    }
+  }
+
   return (
     <main className='main'>
       {!isLoggedIn && (
@@ -43,7 +64,8 @@ export function Login({isLoggedIn, setIsLoggedIn}) {
           <form className='login-form'>
             <input type="text" placeholder="Username" value={userName} onChange={(e) => setUserName(e.target.value)} />
             <input type="password" placeholder="Password" value={password} onChange={(e) => setPassword(e.target.value)} />
-            <button type="submit" onClick={handleLogin}>Login / Sign Up</button>
+            <button type="submit" onClick={handleLogin}>Login</button>
+            <button type="button" onClick={handleSignUp}>Sign Up</button>
           </form>
         </>
       )}
