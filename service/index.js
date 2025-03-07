@@ -12,18 +12,23 @@ app.use('/api', apiRouter);
 var displayName = '';
 var isLoggedIn = false;
 
-apiRouter.post('/signup', (req, res) => {
+var userNames = [];
+var passwords = [];
+
+apiRouter.post('/login', (req, res) => {
     if (!req.body.userName || !req.body.password) {
         res.status(400).send('Username and password are required');
         return;
     }
     userName = req.body.userName;
     password = req.body.password;
-    passwordHash = await bcrypt.hash(password, 10);
+    passwordHash = bcrypt.hashSync(password, 10);
+    userNames.push(userName);
+    passwords.push(passwordHash);
     displayName = userName;
     isLoggedIn = true;
 
-    console.log('New user signup: ' + userName + ' ' + password);
+    console.log('New user signup: ' + userName);
     res.status(201).json({
         status: 'success',
         message: 'User created successfully',
@@ -31,6 +36,45 @@ apiRouter.post('/signup', (req, res) => {
         isLoggedIn: isLoggedIn
     });
 });
+
+apiRouter.put('/login', async (req, res) => {
+    if (!req.body.userName || !req.body.password) {
+        res.status(400).json({
+            status: 'error',
+            message: 'Username and password are required'
+        });
+        return;
+    }
+    userName = req.body.userName;
+    password = req.body.password;
+    passwordHash = bcrypt.hashSync(password, 10);
+    if (userNames.includes(userName)) {
+        validPassword = await bcrypt.compare(password, passwords[userNames.indexOf(userName)]);
+        if (validPassword) {
+            displayName = userName;
+            isLoggedIn = true;
+            console.log('User logged in: ' + userName);
+            res.status(200).json({
+                status: 'success',
+                message: 'User logged in successfully',
+                displayName: displayName,
+                isLoggedIn: isLoggedIn
+            });
+        } else {
+            res.status(401).json({
+                status: 'error',
+                message: 'Invalid password'
+            });
+        }
+    } else {
+        res.status(401).json({
+            status: 'error',
+            message: 'Invalid username'
+        });
+    }
+});
+
+
 
 var response = {
     "status": "success",

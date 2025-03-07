@@ -14,31 +14,10 @@ export function Login({isLoggedIn, setIsLoggedIn}) {
     }
   }, []);
 
-  const handleLogin = (e) => {
-    e.preventDefault();
-    if (userName && password) {
-      localStorage.setItem('userName', userName);
-      localStorage.setItem('password', password);
-      localStorage.setItem('displayName', userName);
-      setDisplayName(userName);
-      setIsLoggedIn(true);
-      setUserName('');
-      setPassword('');
-    } else {
-      alert('Please enter a valid username and password');
-    }
-  }
-
-  const handleLogout = () => {
-    setIsLoggedIn(false);
-    setDisplayName('');
-    localStorage.removeItem('displayName');
-  }
-
   const handleSignUp = async (e) => {
     e.preventDefault();
     if (userName && password) {
-      const response = await fetch('api/signup', {
+      const response = await fetch('api/login', {
         method: 'post',
         body: JSON.stringify({ userName: userName, password: password }),
         headers: {
@@ -55,6 +34,41 @@ export function Login({isLoggedIn, setIsLoggedIn}) {
       }
     }
   }
+
+  const handleLogin = async (e) => {
+    e.preventDefault();
+    if (userName && password) {
+      const response = await fetch('api/login', {
+        method: 'put',
+        body: JSON.stringify({ userName: userName, password: password }),
+        headers: {
+          'Content-type': 'application/json; charset=UTF-8',
+        },
+      });
+      const data = await response.json();
+      if (data.status === 'success') {
+        localStorage.setItem('userName', userName);
+        localStorage.setItem('password', password);
+        localStorage.setItem('displayName', userName);
+        setDisplayName(userName);
+        setIsLoggedIn(true);
+      } else {
+        alert('Invalid username or password');
+      }
+      setUserName('');
+      setPassword('');
+    } else {
+      alert('Please enter a valid username and password');
+    }
+  }
+
+  const handleLogout = () => {
+    setIsLoggedIn(false);
+    setDisplayName('');
+    localStorage.removeItem('displayName');
+  }
+
+  
 
   return (
     <main className='main'>
