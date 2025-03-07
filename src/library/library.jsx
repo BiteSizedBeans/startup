@@ -1,13 +1,9 @@
-import React, { useState, useEffect, useContext } from 'react';
+import React from 'react';
 import { NavLink } from 'react-router-dom';
 import { Upload } from './upload';
-import { FileContext } from './files';
 import { LoginWarning } from '../login/loginWarning';
-import { useLogin } from '../login/loginContext';
 
-export function Library() {
-  const { files, setCurrentFile } = useContext(FileContext);
-  const { isLoggedIn } = useLogin();
+export function Library({isLoggedIn, files, setFiles, setCurrentFile}) {
   return (
     <main className='main-lib'>
       {!isLoggedIn && <LoginWarning />}
@@ -19,7 +15,7 @@ export function Library() {
             </li>
           ))}
         </ul>
-        <Upload />
+        <Upload setFiles={setFiles} />
     </main>
   );
 }

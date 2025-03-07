@@ -16,6 +16,11 @@ apiRouter.get('/response', (req, res) => {
     res.send(response.message);
 });
 
+apiRouter.post('/question', (req, res) => {
+    console.log(req.body);
+    res.send(req.body);
+});
+
 app.listen(port, () => {
     console.log(`Listening on port ${port}`);
   });

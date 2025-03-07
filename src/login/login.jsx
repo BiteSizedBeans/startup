@@ -1,13 +1,11 @@
 import React, { useState, useEffect } from 'react';
 import { LoginWarning } from './loginWarning';
-import { useLogin } from './loginContext';
 
 
-export function Login() {
+export function Login({isLoggedIn, setIsLoggedIn}) {
   const [userName, setUserName] = useState('');
   const [password, setPassword] = useState('');
   const [displayName, setDisplayName] = useState('');
-  const { isLoggedIn, setIsLoggedIn } = useLogin();
 
   useEffect(() => {
     const storedDisplayName = localStorage.getItem('displayName');

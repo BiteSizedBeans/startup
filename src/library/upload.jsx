@@ -1,8 +1,6 @@
-import React, { useContext } from "react";
-import { FileContext } from "./files";
+import React from "react";
 
-export function Upload() {
-    const { files, setFiles } = useContext(FileContext);
+export function Upload({setFiles}) {
 
     const handleFileUpload = (event) => {
         const file = event.target.files[0];

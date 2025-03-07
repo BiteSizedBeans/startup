@@ -6,48 +6,46 @@ import { BrowserRouter, NavLink, Route, Routes } from 'react-router-dom';
 import { Library } from './library/library';
 import { Login } from './login/login';
 import { Home } from './home/home';
-import { FileProvider } from './library/files';
-import { LoginProvider } from './login/loginContext';
+import { useState } from 'react';
 
 export default function App() {
+  const [isLoggedIn, setIsLoggedIn] = useState(false);
+  const [files, setFiles] = useState(["public/Default_File.MP3"]);
+  const [currentFile, setCurrentFile] = useState(files[0]);
   return (
-    <LoginProvider>
-    <FileProvider>
-      <BrowserRouter>
-        <div>
-          <style>
-            @import url('https://fonts.googleapis.com/css2?family=Lexend+Tera:wght@100..900&display=swap');
-          </style>
-          <header>
-            <div className="text-container">
-              <h1>Talk Back</h1>
-              <nav>
-                <menu>
-                  <p>
-                    <NavLink className='nav-link active' to=''>Home |</NavLink> 
-                    <NavLink className='nav-link' to='library'>Library |</NavLink> 
-                    <NavLink className='nav-link' to='login'>Login</NavLink></p>
-                </menu>
-              </nav>
-            </div>
-            <img src="TalkBackLogo.jpeg" alt="Talk Back Logo" width="100" height="100"></img>  
-          </header>
+    <BrowserRouter>
+      <div>
+        <style>
+          @import url('https://fonts.googleapis.com/css2?family=Lexend+Tera:wght@100..900&display=swap');
+        </style>
+        <header>
+          <div className="text-container">
+            <h1>Talk Back</h1>
+            <nav>
+              <menu>
+                <p>
+                  <NavLink className='nav-link active' to=''>Home |</NavLink> 
+                  <NavLink className='nav-link' to='library'>Library |</NavLink> 
+                  <NavLink className='nav-link' to='login'>Login</NavLink></p>
+              </menu>
+            </nav>
+          </div>
+          <img src="TalkBackLogo.jpeg" alt="Talk Back Logo" width="100" height="100"></img>  
+        </header>
 
-          <Routes>
-            <Route path='/' element={<Home />} />
-            <Route path='/library' element={<Library />} />
-            <Route path='/login' element={<Login />} />
-            <Route path='*' element={<NotFound />} />
-          </Routes>
+        <Routes>
+          <Route path='/' element={<Home currentFile={currentFile}/>} />
+          <Route path='/library' element={<Library isLoggedIn={isLoggedIn} files={files} setFiles={setFiles} setCurrentFile={setCurrentFile} />} />
+          <Route path='/login' element={<Login isLoggedIn={isLoggedIn} setIsLoggedIn={setIsLoggedIn} />} />
+          <Route path='*' element={<NotFound />} />
+        </Routes>
 
-          <footer>
-            <p>Thomas Bean</p>
-            <p><a href="https://github.com/BiteSizedBeans/startup.git">Github</a></p>
-          </footer>
-        </div>
-      </BrowserRouter>
-    </FileProvider>
-    </LoginProvider>
+        <footer>
+          <p>Thomas Bean</p>
+          <p><a href="https://github.com/BiteSizedBeans/startup.git">Github</a></p>
+        </footer>
+      </div>
+    </BrowserRouter>
   );
 }
 function NotFound() {

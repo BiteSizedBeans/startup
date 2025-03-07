@@ -1,10 +1,8 @@
 import React, { useState, useContext, useRef, useEffect } from 'react';
 import { Response } from './response';
 import { SubmitQuestion } from './submitQuestion';
-import { FileContext } from '../library/files';
 
-export function Home() {
-  const { currentFile } = useContext(FileContext);
+export function Home({currentFile}) {
   const [history, setResponse] = useState('');
   const [question, setQuestion] = useState('');
   const [showTranscript, setShowTranscript] = useState(false);
