@@ -1,4 +1,5 @@
 const express = require('express');
+const bcrypt = require('bcrypt');
 const app = express();
 
 const port = process.argv.length > 2 ? process.argv[2] : 4000;
@@ -18,6 +19,7 @@ apiRouter.post('/signup', (req, res) => {
     }
     userName = req.body.userName;
     password = req.body.password;
+    passwordHash = await bcrypt.hash(password, 10);
     displayName = userName;
     isLoggedIn = true;
 
