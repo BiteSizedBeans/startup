@@ -47,7 +47,7 @@ export function Home({currentFile}) {
         )}
         <chat>
           <history>
-            <Response history={history} question={question} setResponse={setResponse} setQuestion={setQuestion} />
+            <Response history={history} prompt={question} setResponse={setResponse} setQuestion={setQuestion} />
           </history>
           <form className="chat-form">
             <SubmitQuestion question={question} setQuestion={setQuestion} />

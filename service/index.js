@@ -18,15 +18,16 @@ const openai = new OpenAI({
 });
 
 app.post("/api/generate", async (req, res) => {
-    const prompt = req.body.prompt;
+    const messages = req.body.messages;
     try{
-        const response = await openai.completions.create({
+        const response = await openai.chat.completions.create({
             model: "gpt-4o-mini",
-            prompt: prompt,
+            messages: messages,
             max_tokens: 1000,
             temperature: 0.7,
         });
-        res.json({ message: response.choices[0].text.trim() });
+        res.json({ message: response.choices[0].message.content.trim() });
+        console.log(response.choices[0].message.content.trim());
     } catch (error) {
         console.error('Error generating response:', error);
         res.status(500).json({ error: error.message });
