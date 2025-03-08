@@ -1,39 +1,41 @@
 const express = require('express');
+const cookieParser = require('cookie-parser');
 const bcrypt = require('bcrypt');
+const uuid = require('uuid');
 const app = express();
 
 const port = process.argv.length > 2 ? process.argv[2] : 4000;
+
 app.use(express.static('public'));
 app.use(express.json());
+app.use(cookieParser());
 
 var apiRouter = express.Router();
 app.use('/api', apiRouter);
+const authCookieName = 'token';
 
-var displayName = '';
-var isLoggedIn = false;
-
-var userNames = [];
-var passwords = [];
+var users = [];
 
 apiRouter.post('/login', (req, res) => {
     if (!req.body.userName || !req.body.password) {
         res.status(400).send('Username and password are required');
         return;
     }
-    userName = req.body.userName;
-    password = req.body.password;
-    passwordHash = bcrypt.hashSync(password, 10);
-    userNames.push(userName);
-    passwords.push(passwordHash);
-    displayName = userName;
-    isLoggedIn = true;
+    const user = {
+        userName: req.body.userName,
+        password: bcrypt.hashSync(req.body.password, 10),
+        displayName: req.body.userName,
+        token: uuid.v4()
+    }
+    users.push(user);
+    setAuthCookie(res, user.token);
 
-    console.log('New user signup: ' + userName);
+
+    console.log('New user signup: ' + user.userName);
     res.status(201).json({
         status: 'success',
         message: 'User created successfully',
-        displayName: displayName,
-        isLoggedIn: isLoggedIn
+        displayName: user.displayName
     });
 });
 
@@ -43,38 +45,50 @@ apiRouter.put('/login', async (req, res) => {
             status: 'error',
             message: 'Username and password are required'
         });
+        console.log('Username and password are required');
         return;
     }
-    userName = req.body.userName;
-    password = req.body.password;
-    passwordHash = bcrypt.hashSync(password, 10);
-    if (userNames.includes(userName)) {
-        validPassword = await bcrypt.compare(password, passwords[userNames.indexOf(userName)]);
-        if (validPassword) {
-            displayName = userName;
-            isLoggedIn = true;
-            console.log('User logged in: ' + userName);
+    const userName = req.body.userName;
+
+    const user = users.find(u => u.userName === userName);
+    if (!user) {
+        console.log('Invalid username');
+        res.status(401).json({
+            status: 'error',
+            message: 'Invalid username'
+        });
+        return;
+    } else {
+        console.log('Username found');
+        if (await bcrypt.compare(req.body.password, user.password)) {
+            user.token = uuid.v4();
+            setAuthCookie(res, user.token);
             res.status(200).json({
                 status: 'success',
                 message: 'User logged in successfully',
-                displayName: displayName,
-                isLoggedIn: isLoggedIn
+                displayName: user.displayName
             });
         } else {
+            console.log('Invalid password');
             res.status(401).json({
                 status: 'error',
                 message: 'Invalid password'
             });
         }
-    } else {
-        res.status(401).json({
-            status: 'error',
-            message: 'Invalid username'
-        });
     }
 });
 
+function setAuthCookie(res, token) {
+    res.cookie(authCookieName, token, {
+        httpOnly: true,
+        secure: true,
+        sameSite: 'strict'
+    });
+}
 
+function getAuthCookie(req) {
+    return req.cookies[authCookieName];
+}
 
 var response = {
     "status": "success",

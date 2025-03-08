@@ -12,6 +12,14 @@ export function Login({isLoggedIn, setIsLoggedIn}) {
     if (storedDisplayName) {
       setDisplayName(storedDisplayName);
     }
+    
+    const checkAuth = async () => {
+      if (await getAuthCookie()) {
+        setIsLoggedIn(true);
+      }
+    };
+    
+    checkAuth();
   }, []);
 
   const handleSignUp = async (e) => {
@@ -24,14 +32,6 @@ export function Login({isLoggedIn, setIsLoggedIn}) {
           'Content-type': 'application/json; charset=UTF-8',
         },
       });
-      const data = await response.json();
-      if (data.status === 'success') {
-        localStorage.setItem('userName', userName);
-        localStorage.setItem('password', password);
-        localStorage.setItem('displayName', userName);
-        setDisplayName(userName);
-        setIsLoggedIn(true);
-      }
     }
   }
 
@@ -45,30 +45,15 @@ export function Login({isLoggedIn, setIsLoggedIn}) {
           'Content-type': 'application/json; charset=UTF-8',
         },
       });
-      const data = await response.json();
-      if (data.status === 'success') {
-        localStorage.setItem('userName', userName);
-        localStorage.setItem('password', password);
-        localStorage.setItem('displayName', userName);
-        setDisplayName(userName);
-        setIsLoggedIn(true);
-      } else {
-        alert('Invalid username or password');
-      }
-      setUserName('');
-      setPassword('');
-    } else {
-      alert('Please enter a valid username and password');
     }
   }
 
+
   const handleLogout = () => {
-    setIsLoggedIn(false);
     setDisplayName('');
     localStorage.removeItem('displayName');
   }
 
-  
 
   return (
     <main className='main'>
