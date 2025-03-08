@@ -13,7 +13,6 @@ export default function App() {
   const [currentFile, setCurrentFile] = useState(files[0]);
   const [token, setToken] = useState('');
   const [displayName, setDisplayName] = useState('');
-  const [user, setUser] = useState('');
 
   return (
     <BrowserRouter>
@@ -38,8 +37,8 @@ export default function App() {
 
         <Routes>
           <Route path='/' element={<Home currentFile={currentFile}/>} />
-          <Route path='/library' element={<Library token={token} files={files} setFiles={setFiles} setCurrentFile={setCurrentFile} user={user} />} />
-          <Route path='/login' element={<Login token={token} setToken={setToken} displayName={displayName} setDisplayName={setDisplayName} setUser={setUser} />} />
+          <Route path='/library' element={<Library token={token} files={files} setFiles={setFiles} setCurrentFile={setCurrentFile} />} />
+          <Route path='/login' element={<Login token={token} setToken={setToken} displayName={displayName} setDisplayName={setDisplayName} />} />
           <Route path='*' element={<NotFound />} />
         </Routes>
 

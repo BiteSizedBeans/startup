@@ -1,17 +1,22 @@
 import React from "react";
 
-export function Upload({setFiles, user}) {
+export function Upload({setFiles, token}) {
 
     const handleFileUpload = async (event) => {
         const file = event.target.files[0];
         if (file && file.type === 'audio/mpeg') {
+            const formData = new FormData();
+            formData.append('file', file);
+            formData.append('token', token);
             const response = await fetch('/api/upload', {
                 method: 'POST',
-                body: JSON.stringify({ file: file.name, user: user }),
+                body: formData,
             });
+            const data = await response.json();
+            console.log(data);
             setFiles(prevFiles => [...prevFiles, file]);
         } else {
-            alert('Please upload a valid audio file');
+            alert('upload failed');
         }
     };
     return (

@@ -3,16 +3,7 @@ import { NavLink } from 'react-router-dom';
 import { Upload } from './upload';
 import { LoginWarning } from '../login/loginWarning';
 
-export function Library({token, files, setFiles, setCurrentFile, user}) {
-
-  useEffect(() => {
-    const fetchFiles = async () => {
-      const response = await fetch(`/api/files/${user}`);
-      const data = await response.json();
-      setFiles(data);
-    };  
-    fetchFiles();
-  }, [user]);
+export function Library({token, files, setFiles, setCurrentFile}) {
 
   return (
     <main className='main-lib'>
@@ -25,7 +16,7 @@ export function Library({token, files, setFiles, setCurrentFile, user}) {
             </li>
           ))}
         </ul>
-        <Upload setFiles={setFiles} user={user} />
+        <Upload setFiles={setFiles} token={token} />
     </main>
   );
 }

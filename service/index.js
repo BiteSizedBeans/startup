@@ -2,6 +2,7 @@ const express = require('express');
 const cookieParser = require('cookie-parser');
 const bcrypt = require('bcrypt');
 const uuid = require('uuid');
+const multer = require('multer');
 require('dotenv').config();
 const OpenAI = require('openai');
 
@@ -61,7 +62,6 @@ apiRouter.post('/login', (req, res) => {
     }
     users.push(user);
     setAuthCookie(res, user.token);
-
 
     console.log('New user signup: ' + user.userName);
     res.status(201).json({
@@ -136,15 +136,23 @@ function getAuthCookie(req) {
 
 // ----------------- Backend for the Library Page -----------------
 
+const upload = multer({ dest: 'uploads/' });
 
-apiRouter.post('/upload', (req, res) => {
-    req.body.user.files.push({
-        file: req.body.file,
-    });
+apiRouter.post('/upload', upload.single('file'), (req, res) => {
+    const user = users.find(u => u.token === req.body.token);
+    if (user) {
+        user.files.push(req.file);
+        console.log(`File ${req.file.filename} uploaded by user ${user.userName}`);
     res.status(200).json({
         status: 'success',
-        message: 'File uploaded successfully'
-    });
+            message: `File ${req.file.filename} uploaded by user ${user.userName}`
+        });
+    } else {
+        res.status(401).json({
+            status: 'error',
+            message: 'Invalid token'
+        });
+    }
 });
 
 
