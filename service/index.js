@@ -27,7 +27,7 @@ app.post("/api/generate", async (req, res) => {
             temperature: 0.7,
         });
         res.json({ message: response.choices[0].message.content.trim() });
-        console.log(response.choices[0].message.content.trim());
+        //console.log(response.choices[0].message.content.trim());
     } catch (error) {
         console.error('Error generating response:', error);
         res.status(500).json({ error: error.message });
