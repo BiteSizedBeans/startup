@@ -45,14 +45,14 @@ export function Home({currentFile}) {
         {showTranscript && (
           <p>This is where the Transcript will go</p>
         )}
-        <chat>
-          <history>
+        <div className="chat-container">
+          <div className="chat-history">
             <Response history={history} prompt={question} setResponse={setResponse} setQuestion={setQuestion} />
-          </history>
-          <form className="chat-form">
-            <SubmitQuestion question={question} setQuestion={setQuestion} />
-          </form>
-        </chat>
+          </div>
+          <div className="chat-form">
+            <SubmitQuestion setQuestion={setQuestion} setResponse={setResponse} history={history}/>
+          </div>
+        </div>
     </main>
 
 

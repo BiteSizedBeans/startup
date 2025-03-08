@@ -64,7 +64,7 @@ main p {
     color:#000000;
     text-align: center;
 }
-main chat {
+.chat-container {
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -78,18 +78,32 @@ main chat {
     border-style: solid;
     border-color: #AE9C88;
 }
-main chat history {
+    
+.loading-indicator {
+align-self: center;
+margin: 16px;
+font-style: italic;
+color: #888;
+}
+    
+.error {
+color: #e74c3c;
+text-align: center;
+padding: 10px;
+margin: 10px 0;
+background-color: #fdecea;
+border-radius: 4px;
+}
+.chat-history {
     width: 100%;
     height: 100%;
     border: none;
 }
-main chat history p left {
-    align-self: flex-start;
-    flex-wrap: wrap;
+.user-message {
+    justify-content: flex-end;
 }
-main chat history p right {
-    align-self: flex-end;
-    flex-wrap: wrap;
+.ai-message {
+    justify-content: flex-start;
 }
 .chat-form {
     width: 100%;
@@ -103,10 +117,6 @@ main chat history p right {
     outline: none;
     display: flex;
     padding: 10px;
-
-
-
-
     box-sizing: border-box;
     font-family: "Lexend Tera", serif;
     background: #BCA691;

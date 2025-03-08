@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 
-export function SubmitQuestion({setQuestion}) {
+export function SubmitQuestion({setQuestion, setResponse, history}) {
     const [inputValue, setInputValue] = useState('');
     
     const handleKeyPress = (event) => {
@@ -8,6 +8,7 @@ export function SubmitQuestion({setQuestion}) {
             event.preventDefault();
             setQuestion(event.target.value);
             setInputValue('');
+            setResponse(history + event.target.value + "\n");
         }
     }
     

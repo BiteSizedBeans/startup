@@ -21,7 +21,7 @@ export function Response({history, prompt, setResponse, setQuestion}) {
                 const message = data.message;
                 console.log(message);
                 setResult(message);
-                setResponse(history + message+ "\n\n");
+                setResponse(history + message+ "\n");
                 setQuestion('');
             } catch (error) {
                 setError(error.message);
@@ -33,9 +33,29 @@ export function Response({history, prompt, setResponse, setQuestion}) {
     }, [prompt, history, setResponse, setQuestion]);
 
     return (
-        <div>        
+        <div className="chat-history">        
             {error && <p className="error">Error: {error}</p>}
-            <p dangerouslySetInnerHTML={{ __html: history.replace(/\n/g, '<br />') }}></p>
+            <div className="chat-messages">
+                {history.split('\n').map((message, index) => {
+                    const isUserMessage = index % 2 === 0;
+                    
+                    return (
+                        <div 
+                            key={index} 
+                            className={`message-container ${isUserMessage ? 'user-message' : 'ai-message'}`}
+                        >
+                            <div className={`message ${isUserMessage ? 'user' : 'ai'}`}>
+                                {message.split('\n').map((line, i) => (
+                                    <React.Fragment key={i}>
+                                        {line}
+                                        {i < message.split('\n').length - 1 && <br />}
+                                    </React.Fragment>
+                                ))}
+                            </div>
+                        </div>
+                    );
+                })}
+            </div>
             {loading && <p>Loading...</p>}
         </div>
     );
