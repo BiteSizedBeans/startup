@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { LoginWarning } from './loginWarning';
 
 
-export function Login({token, setToken, displayName, setDisplayName}) {
+export function Login({token, setToken, displayName, setDisplayName, setUser}) {
   const [userName, setUserName] = useState('');
   const [password, setPassword] = useState('');
 
@@ -26,6 +26,7 @@ export function Login({token, setToken, displayName, setDisplayName}) {
       });
       const data = await response.json();
       const user = data.user;
+      setUser(user);
       setDisplayName(user.displayName);
       setToken(user.token);
       setUserName(user.userName);

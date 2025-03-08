@@ -56,7 +56,8 @@ apiRouter.post('/login', (req, res) => {
         userName: req.body.userName,
         password: bcrypt.hashSync(req.body.password, 10),
         displayName: req.body.userName,
-        token: uuid.v4()
+        token: uuid.v4(),
+        files: []
     }
     users.push(user);
     setAuthCookie(res, user.token);
@@ -131,6 +132,21 @@ function setAuthCookie(res, token) {
 function getAuthCookie(req) {
     return req.cookies[authCookieName];
 }
+
+
+// ----------------- Backend for the Library Page -----------------
+
+
+apiRouter.post('/upload', (req, res) => {
+    req.body.user.files.push({
+        file: req.body.file,
+    });
+    res.status(200).json({
+        status: 'success',
+        message: 'File uploaded successfully'
+    });
+});
+
 
 app.listen(port, () => {
     console.log(`Listening on port ${port}`);
