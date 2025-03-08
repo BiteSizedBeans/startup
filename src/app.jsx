@@ -9,9 +9,10 @@ import { Home } from './home/home';
 import { useState } from 'react';
 
 export default function App() {
-  const [isLoggedIn, setIsLoggedIn] = useState(false);
   const [files, setFiles] = useState(["public/Default_File.MP3"]);
   const [currentFile, setCurrentFile] = useState(files[0]);
+  const [token, setToken] = useState('');
+
   return (
     <BrowserRouter>
       <div>
@@ -35,8 +36,8 @@ export default function App() {
 
         <Routes>
           <Route path='/' element={<Home currentFile={currentFile}/>} />
-          <Route path='/library' element={<Library isLoggedIn={isLoggedIn} files={files} setFiles={setFiles} setCurrentFile={setCurrentFile} />} />
-          <Route path='/login' element={<Login isLoggedIn={isLoggedIn} setIsLoggedIn={setIsLoggedIn} />} />
+          <Route path='/library' element={<Library token={token} files={files} setFiles={setFiles} setCurrentFile={setCurrentFile} />} />
+          <Route path='/login' element={<Login token={token} setToken={setToken} />} />
           <Route path='*' element={<NotFound />} />
         </Routes>
 

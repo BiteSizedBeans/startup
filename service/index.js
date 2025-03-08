@@ -35,7 +35,7 @@ apiRouter.post('/login', (req, res) => {
     res.status(201).json({
         status: 'success',
         message: 'User created successfully',
-        displayName: user.displayName
+        user: user
     });
 });
 
@@ -66,7 +66,7 @@ apiRouter.put('/login', async (req, res) => {
             res.status(200).json({
                 status: 'success',
                 message: 'User logged in successfully',
-                displayName: user.displayName
+                user: user
             });
         } else {
             console.log('Invalid password');
@@ -77,6 +77,17 @@ apiRouter.put('/login', async (req, res) => {
         }
     }
 });
+
+apiRouter.get('/authenticated', (req, res) => {
+    const token = getAuthCookie(req);
+    const user = users.find(u => u.token === token);
+    if (user) {
+        res.json({ authenticated: true });
+    } else {
+        res.json({ authenticated: false });
+    }
+});
+
 
 function setAuthCookie(res, token) {
     res.cookie(authCookieName, token, {

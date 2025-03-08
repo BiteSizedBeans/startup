@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { LoginWarning } from './loginWarning';
 
 
-export function Login({isLoggedIn, setIsLoggedIn}) {
+export function Login({token, setToken}) {
   const [userName, setUserName] = useState('');
   const [password, setPassword] = useState('');
   const [displayName, setDisplayName] = useState('');
@@ -13,13 +13,6 @@ export function Login({isLoggedIn, setIsLoggedIn}) {
       setDisplayName(storedDisplayName);
     }
     
-    const checkAuth = async () => {
-      if (await getAuthCookie()) {
-        setIsLoggedIn(true);
-      }
-    };
-    
-    checkAuth();
   }, []);
 
   const handleSignUp = async (e) => {
@@ -32,6 +25,12 @@ export function Login({isLoggedIn, setIsLoggedIn}) {
           'Content-type': 'application/json; charset=UTF-8',
         },
       });
+      const data = await response.json();
+      const user = data.user;
+      setDisplayName(user.displayName);
+      setToken(user.token);
+      setUserName(user.userName);
+      setPassword(user.password);
     }
   }
 
@@ -45,19 +44,27 @@ export function Login({isLoggedIn, setIsLoggedIn}) {
           'Content-type': 'application/json; charset=UTF-8',
         },
       });
+      const data = await response.json();
+      const user = data.user;
+      setDisplayName(user.displayName);
+      setToken(user.token);
+      setUserName(user.userName);
+      setPassword(user.password);
     }
   }
 
 
   const handleLogout = () => {
     setDisplayName('');
-    localStorage.removeItem('displayName');
+    setToken('');
+    setUserName('');
+    setPassword('');
   }
 
 
   return (
     <main className='main'>
-      {!isLoggedIn && (
+      {!token && (
         <>
           <LoginWarning />
           <form className='login-form'>
@@ -68,7 +75,7 @@ export function Login({isLoggedIn, setIsLoggedIn}) {
           </form>
         </>
       )}
-      {isLoggedIn && (
+      {token && (
         <div className='login-status'>
           <p>Logged in as {displayName}! Welcome back!</p>
           <button onClick={handleLogout}>Logout</button>
