@@ -12,6 +12,12 @@ const port = process.argv.length > 2 ? process.argv[2] : 4000;
 app.use(express.static('public'));
 app.use(express.json());
 app.use(cookieParser());
+var apiRouter = express.Router();
+app.use('/api', apiRouter);
+
+
+// ----------------- Backend for the Home Page -----------------
+
 
 const openai = new OpenAI({
   apiKey: process.env.OPENAI_API_KEY,
@@ -27,15 +33,16 @@ app.post("/api/generate", async (req, res) => {
             temperature: 0.7,
         });
         res.json({ message: response.choices[0].message.content.trim() });
-        //console.log(response.choices[0].message.content.trim());
     } catch (error) {
         console.error('Error generating response:', error);
         res.status(500).json({ error: error.message });
     }
 });
 
-var apiRouter = express.Router();
-app.use('/api', apiRouter);
+
+// ----------------- Backend for the Login Page -----------------
+
+
 const authCookieName = 'token';
 
 var users = [];
@@ -124,21 +131,6 @@ function setAuthCookie(res, token) {
 function getAuthCookie(req) {
     return req.cookies[authCookieName];
 }
-
-var response = {
-    "status": "success",
-    "message": "This is another example response\n"
-}
-
-apiRouter.get('/response', (req, res) => {
-    console.log(response);
-    res.send(response.message);
-});
-
-apiRouter.post('/question', (req, res) => {
-    console.log(req.body);
-    res.send(req.body);
-});
 
 app.listen(port, () => {
     console.log(`Listening on port ${port}`);
