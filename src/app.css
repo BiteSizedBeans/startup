@@ -99,11 +99,19 @@ border-radius: 4px;
     height: 100%;
     border: none;
 }
+.message-container {
+    display: flex;
+    width: 100%;
+}
 .user-message {
     justify-content: flex-end;
+    padding-right: 5px;
+    padding-left: 5px;  
 }
 .ai-message {
     justify-content: flex-start;
+    padding-left: 5px;
+    padding-right: 5px;
 }
 .chat-form {
     width: 100%;
