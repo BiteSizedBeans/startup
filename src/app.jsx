@@ -12,6 +12,7 @@ export default function App() {
   const [files, setFiles] = useState(["public/Default_File.MP3"]);
   const [currentFile, setCurrentFile] = useState(files[0]);
   const [token, setToken] = useState('');
+  const [displayName, setDisplayName] = useState('');
 
   return (
     <BrowserRouter>
@@ -37,7 +38,7 @@ export default function App() {
         <Routes>
           <Route path='/' element={<Home currentFile={currentFile}/>} />
           <Route path='/library' element={<Library token={token} files={files} setFiles={setFiles} setCurrentFile={setCurrentFile} />} />
-          <Route path='/login' element={<Login token={token} setToken={setToken} />} />
+          <Route path='/login' element={<Login token={token} setToken={setToken} displayName={displayName} setDisplayName={setDisplayName} />} />
           <Route path='*' element={<NotFound />} />
         </Routes>
 

@@ -2,10 +2,9 @@ import React, { useState, useEffect } from 'react';
 import { LoginWarning } from './loginWarning';
 
 
-export function Login({token, setToken}) {
+export function Login({token, setToken, displayName, setDisplayName}) {
   const [userName, setUserName] = useState('');
   const [password, setPassword] = useState('');
-  const [displayName, setDisplayName] = useState('');
 
   useEffect(() => {
     const storedDisplayName = localStorage.getItem('displayName');
