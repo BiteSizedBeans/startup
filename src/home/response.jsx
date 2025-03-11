@@ -12,6 +12,7 @@ export function Response({history, prompt, setResponse, setQuestion, currentFile
             setLoading(true);
             setError(null);
             try {
+                console.log(currentFile);
                 const response = await fetch('/api/generate', {
                     method: 'POST',
                     headers: { 'Content-Type': 'application/json' },
