@@ -90,7 +90,13 @@ apiRouter.post('/upload', upload.single('file'), (req, res) => {
 });
 
 apiRouter.get('/files', (req, res) => {
-    const user = getUser(req.body.token);
+    const authHeader = req.headers.authorization;
+    let token
+    if (authHeader && authHeader.startsWith('Bearer ')) {
+        token = authHeader.substring(7);
+    }
+    const user = getUser(token);
+    console.log(user);
     res.status(200).json({
         files: user.files
     });
@@ -150,7 +156,7 @@ apiRouter.put('/login', async (req, res) => {
             user.token = uuid.v4();
             setAuthCookie(res, user.token);
             console.log(`User ${user.userName} logged in successfully`);
-            console.log(user.files)
+            console.log(user.files);
             res.status(200).json({
                 status: 'success',
                 message: 'User logged in successfully',

@@ -38,7 +38,7 @@ export default function App() {
         <Routes>
           <Route path='/' element={<Home currentFile={currentFile} token={token} files={files}/>} />
           <Route path='/library' element={<Library token={token} files={files} setFiles={setFiles} setCurrentFile={setCurrentFile} />} />
-          <Route path='/login' element={<Login token={token} setToken={setToken} displayName={displayName} setDisplayName={setDisplayName} setFiles={setFiles} />} />
+          <Route path='/login' element={<Login token={token} setToken={setToken} displayName={displayName} setDisplayName={setDisplayName} setFiles={setFiles} files={files} />} />
           <Route path='*' element={<NotFound />} />
         </Routes>
 

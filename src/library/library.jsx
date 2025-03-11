@@ -6,7 +6,9 @@ import { LoginWarning } from '../login/loginWarning';
 export function Library({token, files, setFiles, setCurrentFile}) {
 
   useEffect(() => {
-    if (token && !files.length === 0) {
+    console.log(files.length);
+    console.log(token);
+    if (token) {
       fetch('/api/files', {
         method: 'GET',
         headers: {
