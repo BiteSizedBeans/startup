@@ -13,8 +13,19 @@ export function Upload({setFiles, token}) {
                 body: fileData,
             });
             const data = await response.json();
-            console.log(data);
-            setFiles(prevFiles => [...prevFiles, file]);
+            
+            fetch('/api/files', {
+                method: 'GET',
+                headers: {
+                  'Content-Type': 'application/json',
+                  'Authorization': `Bearer ${token}`
+                }
+              })
+              .then(response => response.json())
+              .then(data => {
+                setFiles(data.files);
+                console.log(files);
+              })
         } else {
             alert('upload failed');
         }

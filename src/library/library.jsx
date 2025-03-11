@@ -6,8 +6,6 @@ import { LoginWarning } from '../login/loginWarning';
 export function Library({token, files, setFiles, setCurrentFile}) {
 
   useEffect(() => {
-    console.log(files.length);
-    console.log(token);
     if (token) {
       fetch('/api/files', {
         method: 'GET',
@@ -19,6 +17,7 @@ export function Library({token, files, setFiles, setCurrentFile}) {
       .then(response => response.json())
       .then(data => {
         setFiles(data.files);
+        console.log(files);
       })
       .catch(error => console.error('Error fetching files:', error));
     } else {
@@ -34,7 +33,7 @@ export function Library({token, files, setFiles, setCurrentFile}) {
           {files.length === 0 && <p>No uploaded files... yet</p>}
           {files.map((file, index) => (
             <li key={index}>
-              <NavLink className='nav-link' to='/' onClick={() => setCurrentFile(file)}>{file.name}</NavLink>
+              <NavLink className='nav-link' to='/' onClick={() => setCurrentFile(file)}>{file.fileName}</NavLink>
             </li>
           ))}
         </ul>
