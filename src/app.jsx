@@ -9,8 +9,8 @@ import { Home } from './home/home';
 import { useState } from 'react';
 
 export default function App() {
-  const [files, setFiles] = useState(["public/Default_File.MP3"]);
-  const [currentFile, setCurrentFile] = useState(files[0]);
+  const [files, setFiles] = useState([]);
+  const [currentFile, setCurrentFile] = useState("public/Default_File.MP3");
   const [token, setToken] = useState('');
   const [displayName, setDisplayName] = useState('');
 
@@ -36,9 +36,9 @@ export default function App() {
         </header>
 
         <Routes>
-          <Route path='/' element={<Home currentFile={currentFile}/>} />
+          <Route path='/' element={<Home currentFile={currentFile} token={token} files={files}/>} />
           <Route path='/library' element={<Library token={token} files={files} setFiles={setFiles} setCurrentFile={setCurrentFile} />} />
-          <Route path='/login' element={<Login token={token} setToken={setToken} displayName={displayName} setDisplayName={setDisplayName} />} />
+          <Route path='/login' element={<Login token={token} setToken={setToken} displayName={displayName} setDisplayName={setDisplayName} setFiles={setFiles} />} />
           <Route path='*' element={<NotFound />} />
         </Routes>
 

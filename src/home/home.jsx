@@ -2,8 +2,8 @@ import React, { useState, useContext, useRef, useEffect } from 'react';
 import { Response } from './response';
 import { SubmitQuestion } from './submitQuestion';
 
-export function Home({currentFile}) {
-  const [history, setResponse] = useState('');
+export function Home({currentFile, token, files}) {
+  const [history, setResponse] = useState([]);
   const [question, setQuestion] = useState('');
   const [showTranscript, setShowTranscript] = useState(false);
   const [playCurrentFile, setPlayCurrentFile] = useState(false);
@@ -47,10 +47,10 @@ export function Home({currentFile}) {
         )}
         <div className="chat-container">
           <div className="chat-history">
-            <Response history={history} prompt={question} setResponse={setResponse} setQuestion={setQuestion} />
+            <Response history={history} prompt={question} setResponse={setResponse} setQuestion={setQuestion} currentFile={currentFile} token={token} files={files}/>
           </div>
           <div className="chat-form">
-            <SubmitQuestion setQuestion={setQuestion} setResponse={setResponse} history={history}/>
+            <SubmitQuestion setQuestion={setQuestion} setResponse={setResponse} history={history} currentFile={currentFile}/>
           </div>
         </div>
     </main>

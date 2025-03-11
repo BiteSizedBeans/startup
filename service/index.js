@@ -16,6 +16,16 @@ app.use(cookieParser());
 var apiRouter = express.Router();
 app.use('/api', apiRouter);
 
+const guestUser = {
+    userName: 'guest',
+    password: 'guest',
+    displayName: 'Guest',
+    token: 'guest',
+    files: []
+}
+
+var users = [guestUser];
+
 
 // ----------------- Backend for the Home Page -----------------
 
@@ -25,18 +35,60 @@ const openai = new OpenAI({
 });
 
 app.post("/api/generate", async (req, res) => {
-    const messages = req.body.messages;
+    const token = req.body.token;
+    const user = users.find(u => u.token === token);
+    const message = req.body.message;
+    const fileIndex = user.files.indexOf(req.body.file);
+    const history = [];
+    // const history = user.files[fileIndex].fileChatHistory;
     try{
+        history.push({role: "user", content: message});
         const response = await openai.chat.completions.create({
             model: "gpt-4o-mini",
-            messages: messages,
+            messages: history,
             max_tokens: 1000,
             temperature: 0.7,
         });
-        res.json({ message: response.choices[0].message.content.trim() });
+
+        const reply = response.choices[0].message.content.trim();
+        history.push({role: "assistant", content: reply});
+        console.log(history);
+
+        res.json({
+            chatHistory: history
+        });
     } catch (error) {
         console.error('Error generating response:', error);
         res.status(500).json({ error: error.message });
+    }
+});
+
+
+// ----------------- Backend for the Library Page -----------------
+
+const upload = multer({ dest: 'uploads/' });
+
+apiRouter.post('/upload', upload.single('file'), (req, res) => {
+    const user = getUser(req.body.token);
+    console.log(user.userName);
+    if (user) {
+        const fileObject = {
+            file: req.file,
+            fileName: req.file.filename,
+            fileTranscript: null,
+            fileChatHistory: []
+
+        }
+        user.files.push(fileObject);
+    res.status(200).json({
+        status: 'success',
+            message: `File ${req.file.filename} uploaded by user ${user.userName}`
+        });
+    } else {
+        res.status(401).json({
+            status: 'error',
+            message: 'Invalid token'
+        });
     }
 });
 
@@ -45,8 +97,6 @@ app.post("/api/generate", async (req, res) => {
 
 
 const authCookieName = 'token';
-
-var users = [];
 
 apiRouter.post('/login', (req, res) => {
     if (!req.body.userName || !req.body.password) {
@@ -133,27 +183,9 @@ function getAuthCookie(req) {
     return req.cookies[authCookieName];
 }
 
-
-// ----------------- Backend for the Library Page -----------------
-
-const upload = multer({ dest: 'uploads/' });
-
-apiRouter.post('/upload', upload.single('file'), (req, res) => {
-    const user = users.find(u => u.token === req.body.token);
-    if (user) {
-        user.files.push(req.file);
-        console.log(`File ${req.file.filename} uploaded by user ${user.userName}`);
-    res.status(200).json({
-        status: 'success',
-            message: `File ${req.file.filename} uploaded by user ${user.userName}`
-        });
-    } else {
-        res.status(401).json({
-            status: 'error',
-            message: 'Invalid token'
-        });
-    }
-});
+function getUser(token) {
+    return users.find(u => u.token === token);
+}
 
 
 app.listen(port, () => {
