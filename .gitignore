@@ -7,7 +7,8 @@ node_modules
 /build
 /dist
 .env
-/service
+dbConfig.json
+
 
 # misc
 .DS_Store
