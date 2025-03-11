@@ -7,6 +7,7 @@ node_modules
 /build
 /dist
 .env
+/service
 
 # misc
 .DS_Store
