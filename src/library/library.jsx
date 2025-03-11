@@ -24,7 +24,7 @@ export function Library({token, files, setFiles, setCurrentFile}) {
       setFiles([]);
       setCurrentFile("public/Default_File.MP3");
     }
-  }, [token, setFiles, setCurrentFile]);
+  }, [token, setFiles, setCurrentFile ]);
 
   return (
     <main className='main-lib'>

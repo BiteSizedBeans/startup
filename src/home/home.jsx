@@ -16,11 +16,15 @@ export function Home({currentFile, token, files}) {
     setPlayCurrentFile(!playCurrentFile);
   }
 
-  const audioSrc = typeof currentFile === 'string' 
-    ? currentFile
-    : currentFile instanceof File
-      ? URL.createObjectURL(currentFile)
+  const audioSrc = typeof currentFile.fileName === 'string' 
+    ? currentFile.file
+    : currentFile.file instanceof File
+      ? URL.createObjectURL(currentFile.file)
       : '';
+
+  useEffect(() => {
+    console.log(currentFile)
+  }, []);
 
   return (
     <main className='main'>
@@ -38,8 +42,8 @@ export function Home({currentFile, token, files}) {
         </menu>
         {playCurrentFile && (
           <div>
-            <p>{currentFile.name || 'Default File'}</p>
-            <audio src={audioSrc} controls />
+            <p>{currentFile.fileName || 'Default File'}</p>
+            <audio src={currentFile.file} controls />
           </div>
         )}
         {showTranscript && (

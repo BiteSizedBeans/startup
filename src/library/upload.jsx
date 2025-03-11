@@ -24,7 +24,6 @@ export function Upload({setFiles, token}) {
               .then(response => response.json())
               .then(data => {
                 setFiles(data.files);
-                console.log(files);
               })
         } else {
             alert('upload failed');
