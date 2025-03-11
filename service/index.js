@@ -39,8 +39,8 @@ app.post("/api/generate", async (req, res) => {
     const user = users.find(u => u.token === token);
     const message = req.body.message;
     const fileIndex = user.files.indexOf(req.body.file);
-    const history = [];
-    // const history = user.files[fileIndex].fileChatHistory;
+    // const history = [];
+    const history = user.files[0].fileChatHistory;
     try{
         history.push({role: "user", content: message});
         const response = await openai.chat.completions.create({
@@ -52,7 +52,6 @@ app.post("/api/generate", async (req, res) => {
 
         const reply = response.choices[0].message.content.trim();
         history.push({role: "assistant", content: reply});
-        console.log(history);
 
         res.json({
             chatHistory: history
@@ -70,14 +69,12 @@ const upload = multer({ dest: 'uploads/' });
 
 apiRouter.post('/upload', upload.single('file'), (req, res) => {
     const user = getUser(req.body.token);
-    console.log(user.userName);
     if (user) {
         const fileObject = {
             file: req.file,
             fileName: req.file.filename,
             fileTranscript: null,
             fileChatHistory: []
-
         }
         user.files.push(fileObject);
     res.status(200).json({
