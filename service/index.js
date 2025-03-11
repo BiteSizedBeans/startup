@@ -92,6 +92,13 @@ apiRouter.post('/upload', upload.single('file'), (req, res) => {
     }
 });
 
+apiRouter.get('/files', (req, res) => {
+    const user = getUser(req.body.token);
+    res.status(200).json({
+        files: user.files
+    });
+});
+
 
 // ----------------- Backend for the Login Page -----------------
 

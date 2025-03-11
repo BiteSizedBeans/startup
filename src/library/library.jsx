@@ -5,6 +5,26 @@ import { LoginWarning } from '../login/loginWarning';
 
 export function Library({token, files, setFiles, setCurrentFile}) {
 
+  useEffect(() => {
+    if (token && !files.length === 0) {
+      fetch('/api/files', {
+        method: 'GET',
+        headers: {
+          'Content-Type': 'application/json',
+          'Authorization': `Bearer ${token}`
+        }
+      })
+      .then(response => response.json())
+      .then(data => {
+        setFiles(data.files);
+      })
+      .catch(error => console.error('Error fetching files:', error));
+    } else {
+      setFiles([]);
+      setCurrentFile("public/Default_File.MP3");
+    }
+  }, [token, setFiles, setCurrentFile]);
+
   return (
     <main className='main-lib'>
       {!token && <LoginWarning />}
