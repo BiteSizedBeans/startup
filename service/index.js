@@ -37,11 +37,8 @@ const openai = new OpenAI({
 app.post("/api/generate", async (req, res) => {
     const token = req.body.token;
     const user = users.find(u => u.token === token);
-
-    console.log(req.body.file);
-
     const message = req.body.message;
-    const fileIndex = user.files.findIndex(f => f.file.fileName === req.body.file.fileName);
+    const fileIndex = user.files.findIndex(f => f.file.fileID === req.body.file.fileID);
     const history = user.files[fileIndex].fileChatHistory;
     try{
         history.push({role: "user", content: message});
@@ -152,6 +149,8 @@ apiRouter.put('/login', async (req, res) => {
         if (await bcrypt.compare(req.body.password, user.password)) {
             user.token = uuid.v4();
             setAuthCookie(res, user.token);
+            console.log(`User ${user.userName} logged in successfully`);
+            console.log(user.files)
             res.status(200).json({
                 status: 'success',
                 message: 'User logged in successfully',

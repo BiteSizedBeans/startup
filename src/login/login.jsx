@@ -50,6 +50,7 @@ export function Login({token, setToken, displayName, setDisplayName, setFiles}) 
       setToken(user.token);
       setUserName(user.userName);
       setPassword(user.password);
+      setFiles(user.files);
     }
   }
 
