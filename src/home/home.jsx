@@ -33,6 +33,7 @@ export function Home({currentFile, token, files}) {
         {playCurrentFile && (
           <div>
             <p>{currentFile.fileName || 'Default File'}</p>
+            {console.log(currentFile)}
             <audio src={`/api/audio/${currentFile.file.filename}${currentFile.file.originalname.substring(currentFile.file.originalname.lastIndexOf('.'))}`} controls />
           </div>
         )}
