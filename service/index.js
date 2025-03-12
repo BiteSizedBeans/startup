@@ -90,10 +90,7 @@ apiRouter.post('/upload', upload.single('file'), async (req, res) => {
         fs.renameSync(req.file.path, newPath);
         console.log(newPath);
         const transcript = await openai.audio.translations.create({
-            file: fs.createReadStream("uploads/Default_File.MP3"),
-            // file: fs.createReadStream("uploads/Test-1.MP3"),
-            // file: fs.createReadStream("../public/Test (1).m4a"),
-            // file: fs.createReadStream(newPath);,
+            file: fs.createReadStream(newPath),
             model: "whisper-1"
         });
         console.log(transcript);

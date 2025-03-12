@@ -30,6 +30,7 @@
     "cookie-parser": "^1.4.7",
     "dotenv": "^16.4.7",
     "express": "^4.21.2",
+    "ffmpeg": "^0.0.4",
     "file-type": "^20.4.0",
     "fs": "^0.0.1-security",
     "mongodb": "^6.14.2",
