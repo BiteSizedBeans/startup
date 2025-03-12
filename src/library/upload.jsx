@@ -4,7 +4,7 @@ export function Upload({setFiles, token}) {
 
     const handleFileUpload = async (event) => {
         const file = event.target.files[0];
-        if (file && file.type === 'audio/mpeg') {
+        if (file && (file.type === 'audio/mpeg' || file.type === 'audio/x-m4a')) {
             
             const fileData = new FormData();
             fileData.append('file', file);

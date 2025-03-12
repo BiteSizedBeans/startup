@@ -5,16 +5,16 @@ const uuid = require('uuid');
 const multer = require('multer');
 require('dotenv').config();
 const OpenAI = require('openai');
-const { MongoClient } = require('mongodb');
-const config = require('./dbConfig.json');
 const fs = require('fs');
-const { register } = require('module');
+// const { MongoClient } = require('mongodb');
+// const config = require('./dbConfig.json');
+// const { register } = require('module');
 
-const url = `mongodb+srv://${config.userName}:${config.password}@${config.hostname}`;
+// const url = `mongodb+srv://${config.userName}:${config.password}@${config.hostname}`;
 
-const client = new MongoClient(url);
-const db = client.db('users');
-const collection = db.collection('users');
+// const client = new MongoClient(url);
+// const db = client.db('users');
+// const collection = db.collection('users');
 
 const app = express();
 
@@ -86,14 +86,16 @@ apiRouter.post('/upload', upload.single('file'), async (req, res) => {
     if (user) {
         console.log(req.file);
         const extension = req.file.originalname.split('.').pop();
-        const newPath = `uploads/${req.file.filename}.${extension}`;
+        const newPath = `${req.file.destination}${req.file.filename}.${extension}`;
         fs.renameSync(req.file.path, newPath);
         console.log(newPath);
+        const stream = fs.createReadStream(newPath);
         const transcript = await openai.audio.transcriptions.create({
-            file: fs.createReadStream("C:/Users/47tho/OneDrive/Desktop/School/CS260/startup-1/service/uploads/2bbfd745bc0e99198d46417b340de7ab.mp3"),
-            model: "whisper-1",
-            response_format: "text",
+            // file: fs.createReadStream("../public/Test (1).m4a"),
+            file: stream,
+            model: "whisper-1"
         });
+        console.log(transcript);
         const fileObject = {
             file: req.file,
             fileName: req.file.originalname,
