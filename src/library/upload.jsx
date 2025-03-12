@@ -3,34 +3,36 @@ import React from "react";
 export function Upload({setFiles, token}) {
 
     const handleFileUpload = async (event) => {
-        const file = event.target.files[0];
-        if (file && (file.type === 'audio/mpeg' || file.type === 'audio/x-m4a')) {
-            
-            const fileData = new FormData();
-            fileData.append('file', file);
-            fileData.append('token', token);
-            const response = await fetch('/api/upload', {
-                method: 'POST',
-                body: fileData,
-            });
-            const data = await response.json();
-            
-            fetch('/api/files', {
-                method: 'GET',
-                headers: {
-                  'Content-Type': 'application/json',
-                  'Authorization': `Bearer ${token}`
-                }
-              })
-              .then(response => response.json())
-              .then(data => {
-                setFiles(data.files);
-              })
-            console.log(file);
-            const fileDataNew = new FormData();
-            fileDataNew.append('file', file);;
+        if (token){
+            const file = event.target.files[0];
+            if (file && (file.type === 'audio/mpeg' || file.type === 'audio/x-m4a')) {
+                
+                const fileData = new FormData();
+                fileData.append('file', file);
+                fileData.append('token', token);
+                const response = await fetch('/api/upload', {
+                    method: 'POST',
+                    body: fileData,
+                });
+                const data = await response.json();
+                fetch('/api/files', {
+                    method: 'GET',
+                    headers: {
+                    'Content-Type': 'application/json',
+                    'Authorization': `Bearer ${token}`
+                    }
+                })
+                .then(response => response.json())
+                .then(data => {
+                    setFiles(data.files);
+                })
+                const fileDataNew = new FormData();
+                fileDataNew.append('file', data.file);
+            } else {
+                alert('upload failed');
+            }
         } else {
-            alert('upload failed');
+            alert('Must be logged in to upload files');
         }
     };
     return (

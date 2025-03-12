@@ -10,9 +10,11 @@ import { useState } from 'react';
 
 export default function App() {
   const [files, setFiles] = useState([]);
-  const [currentFile, setCurrentFile] = useState("public/Default_File.MP3");
+  const [currentFile, setCurrentFile] = useState("");
   const [token, setToken] = useState('');
   const [displayName, setDisplayName] = useState('');
+  const [guestFiles, setGuestFiles] = useState([]);
+  const [useGuestData, setUseGuestData] = useState(true);
 
   return (
     <BrowserRouter>
@@ -36,9 +38,36 @@ export default function App() {
         </header>
 
         <Routes>
-          <Route path='/' element={<Home currentFile={currentFile} token={token} files={files}/>} />
-          <Route path='/library' element={<Library token={token} files={files} setFiles={setFiles} setCurrentFile={setCurrentFile} />} />
-          <Route path='/login' element={<Login token={token} setToken={setToken} displayName={displayName} setDisplayName={setDisplayName} setFiles={setFiles} files={files} />} />
+          <Route path='/' element={
+            <Home token={token}
+             currentFile={currentFile} 
+             files={files} 
+            />
+          } />
+          
+          <Route path='/library' element={
+            <Library token={token} 
+             files={files} 
+             setFiles={setFiles}
+             setCurrentFile={setCurrentFile} 
+             useGuestData={useGuestData} 
+             guestFiles={guestFiles}
+            />
+          } />
+          
+          <Route path='/login' element={
+            <Login token={token}
+             setToken={setToken}
+             displayName={displayName} 
+             setDisplayName={setDisplayName} 
+             setFiles={setFiles} 
+             files={files} 
+             useGuestData={useGuestData} 
+             setUseGuestData={setUseGuestData} 
+             setGuestFiles={setGuestFiles}
+            />
+          } />
+          
           <Route path='*' element={<NotFound />} />
         </Routes>
 

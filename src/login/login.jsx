@@ -2,17 +2,9 @@ import React, { useState, useEffect } from 'react';
 import { LoginWarning } from './loginWarning';
 
 
-export function Login({token, setToken, displayName, setDisplayName, setFiles, files}) {
+export function Login({token, setToken, displayName, setDisplayName, setFiles, setUseGuestData, setGuestFiles}) {
   const [userName, setUserName] = useState('');
   const [password, setPassword] = useState('');
-
-  useEffect(() => {
-    const storedDisplayName = localStorage.getItem('displayName');
-    if (storedDisplayName) {
-      setDisplayName(storedDisplayName);
-    }
-    
-  }, []);
 
   const handleSignUp = async (e) => {
     e.preventDefault();
@@ -31,6 +23,8 @@ export function Login({token, setToken, displayName, setDisplayName, setFiles, f
       setUserName(user.userName);
       setPassword(user.password);
       setFiles(user.files);
+      setUseGuestData(false);
+      setGuestFiles([]);
     }
   }
 
@@ -51,7 +45,8 @@ export function Login({token, setToken, displayName, setDisplayName, setFiles, f
       setUserName(user.userName);
       setPassword(user.password);
       setFiles(user.files);
-      console.log(files);
+      setUseGuestData(false);
+      setGuestFiles([]);
     }
   }
 
@@ -61,6 +56,7 @@ export function Login({token, setToken, displayName, setDisplayName, setFiles, f
     setToken('');
     setUserName('');
     setPassword('');
+    setUseGuestData(true);
   }
 
 

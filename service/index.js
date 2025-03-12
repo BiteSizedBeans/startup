@@ -31,7 +31,22 @@ const guestUser = {
     password: 'guest',
     displayName: 'Guest',
     token: 'guest',
-    files: []
+    files: [{
+        file: {
+            fieldname: 'file',
+            originalname: 'Default_File.MP3',
+            encoding: '7bit',
+            mimetype: 'audio/mpeg',
+            destination: '../public/',
+            filename: 'Default_File',
+            path: '../public/Default_File.MP3',
+            size: 2272889
+          },
+        fileName: "Default_File.MP3",
+        fileID: uuid.v4(),
+        fileTranscript: "We're no strangers to love\nYou know the rules and so do I\nA full commitment's what I'm thinkin' of\nYou wouldn't get this from any other guy\nI just wanna tell you how I'm feeling\nGotta make you understand\nNever gonna give you up\nNever gonna let you down\nNever gonna run around and desert you\nNever gonna make you cry\nNever gonna say goodbye\nNever gonna tell a lie and hurt you\nWe've known each other for so long\nYour heart's been aching, but you're too shy to say it\nInside, we both know what's been going on\nWe know the game and we're gonna play it\nAnd if you ask me how I'm feeling\nDon't tell me you're too blind to see\nNever gonna give you up\nNever gonna let you down\nNever gonna run around and desert you\nNever gonna make you cry\nNever gonna say goodbye\nNever gonna tell a lie and hurt you\nNever gonna give you up\nNever gonna let you down\nNever gonna run around and desert you\nNever gonna make you cry\nNever gonna say goodbye\nNever gonna tell a lie and hurt you\nNever gonna give you up\nNever gonna let you down\nNever gonna run around and desert you\nNever gonna make you cry\nNever gonna say goodbye\nNever gonna tell a lie and hurt you",
+        fileChatHistory: [{role: "user", content: `The transcript of the file we're going to talk about today is: We're no strangers to love\nYou know the rules and so do I\nA full commitment's what I'm thinkin' of\nYou wouldn't get this from any other guy\nI just wanna tell you how I'm feeling\nGotta make you understand\nNever gonna give you up\nNever gonna let you down\nNever gonna run around and desert you\nNever gonna make you cry\nNever gonna say goodbye\nNever gonna tell a lie and hurt you\nWe've known each other for so long\nYour heart's been aching, but you're too shy to say it\nInside, we both know what's been going on\nWe know the game and we're gonna play it\nAnd if you ask me how I'm feeling\nDon't tell me you're too blind to see\nNever gonna give you up\nNever gonna let you down\nNever gonna run around and desert you\nNever gonna make you cry\nNever gonna say goodbye\nNever gonna tell a lie and hurt you\nNever gonna give you up\nNever gonna let you down\nNever gonna run around and desert you\nNever gonna make you cry\nNever gonna say goodbye\nNever gonna tell a lie and hurt you\nNever gonna give you up\nNever gonna let you down\nNever gonna run around and desert you\nNever gonna make you cry\nNever gonna say goodbye\nNever gonna tell a lie and hurt you`}]
+    }]
 }
 
 var users = [guestUser];
@@ -45,13 +60,6 @@ const openai = new OpenAI({
 });
 
 app.post("/api/generate", async (req, res) => {
-    if (!req.body.token) {
-        res.json({
-            chatHistory: ["Must select a file to use the chat feature"],
-            fileStatus: "error: no file selected"
-        });
-        return;
-    }
     const token = req.body.token;
     const user = users.find(u => u.token === token);
     const message = req.body.message;
@@ -89,7 +97,7 @@ apiRouter.get("/audio/:file", (req, res) => {
 const upload = multer({ dest: 'uploads/' });
 
 apiRouter.post('/upload', upload.single('file'), async (req, res) => {
-    const user = getUser(req.body.token);
+    var user = getUser(req.body.token);
     if (user) {
         const extension = req.file.originalname.split('.').pop();
         const newPath = `${req.file.destination}${req.file.filename}.${extension}`;

@@ -3,7 +3,7 @@ import { NavLink } from 'react-router-dom';
 import { Upload } from './upload';
 import { LoginWarning } from '../login/loginWarning';
 
-export function Library({token, files, setFiles, setCurrentFile}) {
+export function Library({token, files, setFiles, setCurrentFile, useGuestData, guestFiles}) {
 
   useEffect(() => {
     if (token) {
@@ -17,14 +17,23 @@ export function Library({token, files, setFiles, setCurrentFile}) {
       .then(response => response.json())
       .then(data => {
         setFiles(data.files);
-        console.log(files);
       })
       .catch(error => console.error('Error fetching files:', error));
     } else {
-      setFiles([]);
-      setCurrentFile("public/Default_File.MP3");
+      fetch('/api/files', {
+        method: 'GET',
+        headers: {
+          'Content-Type': 'application/json',
+          'Authorization': `Bearer guest`
+        }
+      })
+      .then(response => response.json())
+      .then(data => {
+        setFiles(data.files);
+      })
+      .catch(error => console.error('Error fetching files:', error));
     }
-  }, [token, setFiles, setCurrentFile ]);
+  }, [token, setFiles, setCurrentFile, useGuestData, guestFiles]);
 
   return (
     <main className='main-lib'>
@@ -37,7 +46,7 @@ export function Library({token, files, setFiles, setCurrentFile}) {
             </li>
           ))}
         </ul>
-        <Upload setFiles={setFiles} token={token} />
+        <Upload setFiles={setFiles} token={token} useGuestData={useGuestData} guestFiles={guestFiles}/>
     </main>
   );
 }

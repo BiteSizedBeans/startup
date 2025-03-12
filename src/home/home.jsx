@@ -9,13 +9,13 @@ export function Home({currentFile, token, files}) {
   const [playCurrentFile, setPlayCurrentFile] = useState(false);
 
   const toggleTranscript = () => {
-    if (token) {
+    if (currentFile) {
       setShowTranscript(!showTranscript);
     }
   }
 
   const togglePlayCurrentFile = () => {
-    if (token) {
+    if (currentFile) {
       setPlayCurrentFile(!playCurrentFile);
     }
   }
@@ -37,7 +37,6 @@ export function Home({currentFile, token, files}) {
         {playCurrentFile && (
           <div>
             <p>{currentFile.fileName || 'Default File'}</p>
-            {console.log(currentFile)}
             <audio src={`/api/audio/${currentFile.file.filename}${currentFile.file.originalname.substring(currentFile.file.originalname.lastIndexOf('.'))}`} controls />
           </div>
         )}

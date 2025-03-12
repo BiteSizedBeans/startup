@@ -1,18 +1,19 @@
 import React, { useEffect, useState } from 'react';
 
-export function Response({history, prompt, setResponse, setQuestion, currentFile, token}) {
+export function Response({prompt, setResponse, setQuestion, currentFile, token}) {
     const [messageHistory, setMessageHistory] = useState([]);
     const [loading, setLoading] = useState(false);
     const [error, setError] = useState(null);
 
     useEffect(() => {
         async function getResponse() {
+            if (!currentFile) return;
+            if (!token) return;
             if (!prompt) return;
 
             setLoading(true);
             setError(null);
             try {
-                console.log(currentFile);
                 const response = await fetch('/api/generate', {
                     method: 'POST',
                     headers: { 'Content-Type': 'application/json' },
