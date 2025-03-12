@@ -35,7 +35,7 @@ export function Response({history, prompt, setResponse, setQuestion, currentFile
         <div className="chat-history">        
             {error && <p className="error">Error: {error}</p>}
             <div className="chat-messages">
-                {messageHistory.map((message, index) => {
+                {messageHistory.slice(1).map((message, index) => {
                     const isUserMessage = index % 2 === 0;
                     
                     return (
