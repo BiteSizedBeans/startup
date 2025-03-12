@@ -8,6 +8,7 @@ const OpenAI = require('openai');
 const { MongoClient } = require('mongodb');
 const config = require('./dbConfig.json');
 const fs = require('fs');
+const { register } = require('module');
 
 const url = `mongodb+srv://${config.userName}:${config.password}@${config.hostname}`;
 
@@ -47,7 +48,7 @@ app.post("/api/generate", async (req, res) => {
     const token = req.body.token;
     const user = users.find(u => u.token === token);
     const message = req.body.message;
-    const fileIndex = user.files.findIndex(f => f.file.fileID === req.body.file.fileID);
+    const fileIndex = user.files.findIndex(f => f.fileID === req.body.file.fileID);
     const history = user.files[fileIndex].fileChatHistory;
     try{
         history.push({role: "user", content: message});
@@ -73,7 +74,6 @@ app.post("/api/generate", async (req, res) => {
 apiRouter.get("/audio/:file", (req, res) => {
     const file = req.params.file.substring(0, req.params.file.indexOf('.'));
     const audioSrc = `${__dirname}/uploads/${file}`;
-    // res.attachment(audioSrc);
     res.sendFile(audioSrc);
 });
 

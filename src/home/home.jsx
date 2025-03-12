@@ -16,10 +16,6 @@ export function Home({currentFile, token, files}) {
     setPlayCurrentFile(!playCurrentFile);
   }
 
-  useEffect(() => {
-    console.log(currentFile)
-  }, []);
-
   return (
     <main className='main'>
         <menu>
@@ -36,7 +32,6 @@ export function Home({currentFile, token, files}) {
         </menu>
         {playCurrentFile && (
           <div>
-            {console.log(currentFile)}
             <p>{currentFile.fileName || 'Default File'}</p>
             <audio src={`/api/audio/${currentFile.file.filename}${currentFile.file.originalname.substring(currentFile.file.originalname.lastIndexOf('.'))}`} controls />
           </div>

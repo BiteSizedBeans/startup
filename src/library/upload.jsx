@@ -27,12 +27,12 @@ export function Upload({setFiles, token}) {
                 setFiles(data.files);
               })
 
-            fetch('/api/transcribe', {
-                method: 'POST', 
-                body: fileData,
-            });
-            const transcript = await response.json();
-            console.log(transcript);
+            // fetch('/api/transcribe', {
+            //     method: 'POST', 
+            //     body: fileData,
+            // });
+            // const transcript = await response.json();
+            // console.log(transcript);
         } else {
             alert('upload failed');
         }
