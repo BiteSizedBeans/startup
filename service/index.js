@@ -45,6 +45,13 @@ const openai = new OpenAI({
 });
 
 app.post("/api/generate", async (req, res) => {
+    if (!req.body.token) {
+        res.json({
+            chatHistory: ["Must select a file to use the chat feature"],
+            fileStatus: "error: no file selected"
+        });
+        return;
+    }
     const token = req.body.token;
     const user = users.find(u => u.token === token);
     const message = req.body.message;
@@ -63,7 +70,8 @@ app.post("/api/generate", async (req, res) => {
         history.push({role: "assistant", content: reply});
 
         res.json({
-            chatHistory: history
+            chatHistory: history,
+            fileStatus: "success"
         });
     } catch (error) {
         console.error('Error generating response:', error);
@@ -83,16 +91,13 @@ const upload = multer({ dest: 'uploads/' });
 apiRouter.post('/upload', upload.single('file'), async (req, res) => {
     const user = getUser(req.body.token);
     if (user) {
-        console.log(req.file);
         const extension = req.file.originalname.split('.').pop();
         const newPath = `${req.file.destination}${req.file.filename}.${extension}`;
         fs.renameSync(req.file.path, newPath);
-        console.log(newPath);
         const transcript = await openai.audio.translations.create({
             file: fs.createReadStream(newPath),
             model: "whisper-1"
         });
-        console.log(transcript);
         const fileObject = {
             file: req.file,
             fileName: req.file.originalname,

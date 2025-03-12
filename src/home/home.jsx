@@ -9,11 +9,15 @@ export function Home({currentFile, token, files}) {
   const [playCurrentFile, setPlayCurrentFile] = useState(false);
 
   const toggleTranscript = () => {
-    setShowTranscript(!showTranscript);
+    if (token) {
+      setShowTranscript(!showTranscript);
+    }
   }
 
   const togglePlayCurrentFile = () => {
-    setPlayCurrentFile(!playCurrentFile);
+    if (token) {
+      setPlayCurrentFile(!playCurrentFile);
+    }
   }
 
   return (
