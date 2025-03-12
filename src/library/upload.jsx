@@ -26,13 +26,9 @@ export function Upload({setFiles, token}) {
               .then(data => {
                 setFiles(data.files);
               })
-
-            // fetch('/api/transcribe', {
-            //     method: 'POST', 
-            //     body: fileData,
-            // });
-            // const transcript = await response.json();
-            // console.log(transcript);
+            console.log(file);
+            const fileDataNew = new FormData();
+            fileDataNew.append('file', file);;
         } else {
             alert('upload failed');
         }

@@ -77,36 +77,28 @@ apiRouter.get("/audio/:file", (req, res) => {
     res.sendFile(audioSrc);
 });
 
-const upload = multer({ dest: 'uploads/' });
-
-apiRouter.post("/transcribe", upload.single('file'), async (req, res) => {
-    try{
-        const response = await openai.audio.transcriptions.create({
-            file: fs.createReadStream(req.file.path),
-            model: "whisper-1",
-        });
-        res.json({
-            transcript: response.text
-        });
-    } catch (error) {
-        console.error('Error transcribing file:', error);
-        res.status(500).json({ error: error.message });
-    }
-});
-
-
 // ----------------- Backend for the Library Page -----------------
 
+const upload = multer({ dest: 'uploads/' });
 
-apiRouter.post('/upload', upload.single('file'), (req, res) => {
+apiRouter.post('/upload', upload.single('file'), async (req, res) => {
     const user = getUser(req.body.token);
     if (user) {
         console.log(req.file);
+        const extension = req.file.originalname.split('.').pop();
+        const newPath = `uploads/${req.file.filename}.${extension}`;
+        fs.renameSync(req.file.path, newPath);
+        console.log(newPath);
+        const transcript = await openai.audio.transcriptions.create({
+            file: fs.createReadStream("C:/Users/47tho/OneDrive/Desktop/School/CS260/startup-1/service/uploads/2bbfd745bc0e99198d46417b340de7ab.mp3"),
+            model: "whisper-1",
+            response_format: "text",
+        });
         const fileObject = {
             file: req.file,
             fileName: req.file.originalname,
             fileID: uuid.v4(),
-            fileTranscript: null,
+            fileTranscript: transcript.text,
             fileChatHistory: []
         }
         user.files.push(fileObject);
