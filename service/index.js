@@ -98,7 +98,7 @@ apiRouter.post('/upload', upload.single('file'), async (req, res) => {
             fileName: req.file.originalname,
             fileID: uuid.v4(),
             fileTranscript: transcript.text,
-            fileChatHistory: []
+            fileChatHistory: [{role: "user", content: `The transcript of the file we're going to talk about today is: ${transcript.text}`}]
         }
         user.files.push(fileObject);
     res.status(200).json({

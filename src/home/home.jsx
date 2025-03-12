@@ -38,7 +38,7 @@ export function Home({currentFile, token, files}) {
           </div>
         )}
         {showTranscript && (
-          <p>This is where the Transcript will go</p>
+          <p>{currentFile.fileTranscript}</p>
         )}
         <div className="chat-container">
           <div className="chat-history">
