@@ -7,6 +7,7 @@ require('dotenv').config();
 const OpenAI = require('openai');
 const { MongoClient } = require('mongodb');
 const config = require('./dbConfig.json');
+const fs = require('fs');
 
 const url = `mongodb+srv://${config.userName}:${config.password}@${config.hostname}`;
 
@@ -69,14 +70,38 @@ app.post("/api/generate", async (req, res) => {
     }
 });
 
+apiRouter.get("/audio/:file", (req, res) => {
+    const file = req.params.file.substring(0, req.params.file.indexOf('.'));
+    const audioSrc = `${__dirname}/uploads/${file}`;
+    // res.attachment(audioSrc);
+    res.sendFile(audioSrc);
+});
+
+const upload = multer({ dest: 'uploads/' });
+
+apiRouter.post("/transcribe", upload.single('file'), async (req, res) => {
+    try{
+        const response = await openai.audio.transcriptions.create({
+            file: fs.createReadStream(req.file.path),
+            model: "whisper-1",
+        });
+        res.json({
+            transcript: response.text
+        });
+    } catch (error) {
+        console.error('Error transcribing file:', error);
+        res.status(500).json({ error: error.message });
+    }
+});
+
 
 // ----------------- Backend for the Library Page -----------------
 
-const upload = multer({ dest: 'uploads/' });
 
 apiRouter.post('/upload', upload.single('file'), (req, res) => {
     const user = getUser(req.body.token);
     if (user) {
+        console.log(req.file);
         const fileObject = {
             file: req.file,
             fileName: req.file.originalname,

@@ -5,6 +5,7 @@ export function Upload({setFiles, token}) {
     const handleFileUpload = async (event) => {
         const file = event.target.files[0];
         if (file && file.type === 'audio/mpeg') {
+            
             const fileData = new FormData();
             fileData.append('file', file);
             fileData.append('token', token);
@@ -25,6 +26,13 @@ export function Upload({setFiles, token}) {
               .then(data => {
                 setFiles(data.files);
               })
+
+            fetch('/api/transcribe', {
+                method: 'POST', 
+                body: fileData,
+            });
+            const transcript = await response.json();
+            console.log(transcript);
         } else {
             alert('upload failed');
         }
