@@ -16,12 +16,6 @@ export function Home({currentFile, token, files}) {
     setPlayCurrentFile(!playCurrentFile);
   }
 
-  const audioSrc = typeof currentFile.fileName === 'string' 
-    ? currentFile.file
-    : currentFile.file instanceof File
-      ? URL.createObjectURL(currentFile.file)
-      : '';
-
   useEffect(() => {
     console.log(currentFile)
   }, []);
