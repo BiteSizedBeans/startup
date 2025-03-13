@@ -1,10 +1,15 @@
 import React, { useState } from 'react';
 
-export function SubmitQuestion({setQuestion, setResponse, history}) {
+export function SubmitQuestion({setQuestion, setResponse, history, token}) {
     const [inputValue, setInputValue] = useState('');
     
     const handleKeyPress = (event) => {
         if (event.key === 'Enter') {
+            if (!token) {
+                alert('Must be logged in to submit a question');
+                setInputValue('');
+                return;
+            }
             event.preventDefault();
             setQuestion(event.target.value);
             setInputValue('');

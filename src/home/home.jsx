@@ -48,7 +48,7 @@ export function Home({currentFile, token, files}) {
             <Response history={history} prompt={question} setResponse={setResponse} setQuestion={setQuestion} currentFile={currentFile} token={token} files={files}/>
           </div>
           <div className="chat-form">
-            <SubmitQuestion setQuestion={setQuestion} setResponse={setResponse} history={history} currentFile={currentFile}/>
+            <SubmitQuestion setQuestion={setQuestion} setResponse={setResponse} history={history} token={token}/>
           </div>
         </div>
     </main>

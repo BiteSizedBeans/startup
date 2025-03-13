@@ -168,19 +168,9 @@ apiRouter.post('/login', (req, res) => {
 });
 
 apiRouter.put('/login', async (req, res) => {
-    if (!req.body.userName || !req.body.password) {
-        res.status(400).json({
-            status: 'error',
-            message: 'Username and password are required'
-        });
-        console.log('Username and password are required');
-        return;
-    }
     const userName = req.body.userName;
-
     const user = users.find(u => u.userName === userName);
     if (!user) {
-        console.log('Invalid username');
         res.status(401).json({
             status: 'error',
             message: 'Invalid username'
@@ -198,7 +188,6 @@ apiRouter.put('/login', async (req, res) => {
                 user: user
             });
         } else {
-            console.log('Invalid password');
             res.status(401).json({
                 status: 'error',
                 message: 'Invalid password'

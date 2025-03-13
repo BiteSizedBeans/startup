@@ -39,6 +39,10 @@ export function Login({token, setToken, displayName, setDisplayName, setFiles, s
         },
       });
       const data = await response.json();
+      if (response.status === 401 || response.status === 400) {
+        alert(data.message);
+        return;
+      }
       const user = data.user;
       setDisplayName(user.displayName);
       setToken(user.token);
@@ -47,6 +51,8 @@ export function Login({token, setToken, displayName, setDisplayName, setFiles, s
       setFiles(user.files);
       setUseGuestData(false);
       setGuestFiles([]);
+    } else {
+      alert('Username and password are required');
     }
   }
 
