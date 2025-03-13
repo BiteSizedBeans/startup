@@ -32,4 +32,4 @@ This was wild. I think I got it down as long as I have my usestates and use effe
 
 ## Service Notes
 
-This was really hard. It gets harder every time. The apis were super tricky to figure out, especially the file handling. I probably spend nearly 10 hours on trying to just get the file handlign to work, this was super hard. I hope (and think) that moving to a database will be pretty straightforeward since I already have one mocked up pretty well.
+This was really hard. It gets harder every time. The apis were super tricky to figure out, especially the file handling. I probably spend nearly 3 hours on trying to just get the file handling to work, this was super hard. I might have kinda shot myself in the foot though because of what api's I chose to use and what the actual premise of my startup is. I hope (and think) that moving to a database will be pretty straightforeward since I already have one mocked up pretty well.
