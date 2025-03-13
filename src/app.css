@@ -23,6 +23,14 @@ main menu {
     padding: 10px;
 
 }
+.no-file-selected {
+    font-family: "Lexend Tera", serif;
+    font-weight: 400;
+    font-style: 20px;
+    text-align: center;
+    color: red;
+    min-width: 15vw;
+}
 @media (max-width: 1075px) {
     main menu {
         width: 75vw;

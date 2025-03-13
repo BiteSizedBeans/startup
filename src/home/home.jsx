@@ -1,6 +1,7 @@
 import React, { useState, useContext, useRef, useEffect } from 'react';
 import { Response } from './response';
 import { SubmitQuestion } from './submitQuestion';
+import { LoginWarning } from '../login/loginWarning';
 
 export function Home({currentFile, token, files}) {
   const [history, setResponse] = useState([]);
@@ -22,12 +23,14 @@ export function Home({currentFile, token, files}) {
 
   return (
     <main className='main'>
+      {!token && <LoginWarning />}
         <menu>
           <button type="button" value="Play Current File" 
           onClick={(e) => {
             e.preventDefault();
             togglePlayCurrentFile();
           }}>Play Current File</button>
+          {!currentFile && <p className='no-file-selected'>~ No file selected ~</p>}
           <button type="button" value="View Transcript" 
           onClick={(e) => {
             e.preventDefault();
