@@ -7,7 +7,7 @@ require('dotenv').config();
 const OpenAI = require('openai');
 const fs = require('fs');
 // const { MongoClient } = require('mongodb');
-// const config = require('./dbConfig.json');
+const config = require('./dbConfig.json');
 // const { register } = require('module');
 
 // const url = `mongodb+srv://${config.userName}:${config.password}@${config.hostname}`;
@@ -56,7 +56,7 @@ var users = [guestUser];
 
 
 const openai = new OpenAI({
-  apiKey: process.env.OPENAI_API_KEY,
+  apiKey: config.OPENAI_API_KEY,
 });
 
 app.post("/api/generate", async (req, res) => {
