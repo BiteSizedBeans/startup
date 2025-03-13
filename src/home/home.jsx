@@ -30,13 +30,13 @@ export function Home({currentFile, token, files}) {
             e.preventDefault();
             togglePlayCurrentFile();
           }}>Play Current File</button>
-          {!currentFile && <p className='no-file-selected'>~ No file selected ~</p>}
           <button type="button" value="View Transcript" 
           onClick={(e) => {
             e.preventDefault();
             toggleTranscript();
           }}>View Transcript</button>
         </menu>
+        {!currentFile && <p className='no-file-selected'>~ No file selected ~</p>}
         {playCurrentFile && (
           <div>
             <p>{currentFile.fileName || 'Default File'}</p>
