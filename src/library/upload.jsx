@@ -15,6 +15,10 @@ export function Upload({setFiles, token}) {
                     body: fileData,
                 });
                 const data = await response.json();
+                if (data.error){
+                    alert(data.error);
+                    return;
+                }
                 fetch('/api/files', {
                     method: 'GET',
                     headers: {

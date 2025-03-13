@@ -102,18 +102,24 @@ apiRouter.post('/upload', upload.single('file'), async (req, res) => {
         const extension = req.file.originalname.split('.').pop();
         const newPath = `${req.file.destination}${req.file.filename}.${extension}`;
         fs.renameSync(req.file.path, newPath);
-        const transcript = await openai.audio.translations.create({
-            file: fs.createReadStream(newPath),
-            model: "whisper-1"
-        });
-        const fileObject = {
-            file: req.file,
-            fileName: req.file.originalname,
-            fileID: uuid.v4(),
-            fileTranscript: transcript.text,
-            fileChatHistory: [{role: "user", content: `The transcript of the file we're going to talk about today is: ${transcript.text}`}]
+        try{
+            const transcript = await openai.audio.translations.create({
+                file: fs.createReadStream(newPath),
+                model: "whisper-1"
+            });
+            const fileObject = {
+                file: req.file,
+                fileName: req.file.originalname,
+                fileID: uuid.v4(),
+                fileTranscript: transcript.text,
+                fileChatHistory: [{role: "user", content: `The transcript of the file we're going to talk about today is: ${transcript.text}`}]
+            }
+            user.files.push(fileObject);
+        } catch (error) {
+            console.error('Error transcribing file:', error.message);
+            res.status(400).json({ error: error.message });
+            return;
         }
-        user.files.push(fileObject);
     res.status(200).json({
         status: 'success',
             message: `File ${req.file.filename} uploaded by user ${user.userName}`
