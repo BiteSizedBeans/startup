@@ -1,9 +1,10 @@
 import React from "react";
 
-export function Upload({setFiles, token}) {
+export function Upload({setFiles, token, setTranscribing}) {
 
     const handleFileUpload = async (event) => {
         if (token){
+            setTranscribing(true);
             const file = event.target.files[0];
             if (file && (file.type === 'audio/mpeg' || file.type === 'audio/x-m4a')) {
                 
@@ -35,6 +36,7 @@ export function Upload({setFiles, token}) {
             } else {
                 alert('upload failed');
             }
+            setTranscribing(false);
         } else {
             alert('Must be logged in to upload files');
         }

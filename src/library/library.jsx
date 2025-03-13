@@ -1,9 +1,10 @@
-import React, { useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
 import { NavLink } from 'react-router-dom';
 import { Upload } from './upload';
 import { LoginWarning } from '../login/loginWarning';
 
 export function Library({token, files, setFiles, setCurrentFile, useGuestData, guestFiles}) {
+  const [transcribing, setTranscribing] = useState(false);
 
   useEffect(() => {
     if (token) {
@@ -45,8 +46,9 @@ export function Library({token, files, setFiles, setCurrentFile, useGuestData, g
               <NavLink className='nav-link' to='/' onClick={() => setCurrentFile(file)}>{file.fileName}</NavLink>
             </li>
           ))}
+          {transcribing && <p>Transcribing File...</p>}
         </ul>
-        <Upload setFiles={setFiles} token={token} useGuestData={useGuestData} guestFiles={guestFiles}/>
+        <Upload setFiles={setFiles} token={token} useGuestData={useGuestData} guestFiles={guestFiles} setTranscribing={setTranscribing}/>
     </main>
   );
 }
