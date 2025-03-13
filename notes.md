@@ -29,3 +29,7 @@ This was different. Honestly it took me a long time before I even felt like I wa
 ## React Notes Pt 2
 
 This was wild. I think I got it down as long as I have my usestates and use effects localized to individual pages. I have a couple pieces of data that need to be remembered across multiple pages and I ended up using the use context stuff for that. It got kinda messy but it works! The only thing that doesn't work now (other than API calls and stored/processed username and stuff) is making sure that chat history gets saved to the currently selected file. I think some of the use context stuff I have set up now will also probably eventually end up stored in a database and not locally, but idk tbh.
+
+## Service Notes
+
+This was really hard. It gets harder every time. The apis were super tricky to figure out, especially the file handling. I probably spend nearly 10 hours on trying to just get the file handlign to work, this was super hard. I hope (and think) that moving to a database will be pretty straightforeward since I already have one mocked up pretty well.
