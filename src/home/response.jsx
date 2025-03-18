@@ -5,6 +5,12 @@ export function Response({prompt, setResponse, setQuestion, currentFile, token, 
     const [error, setError] = useState(null);
 
     useEffect(() => {
+        if (currentFile) {
+            setMessageHistory(currentFile.fileChatHistory);
+        }
+    }, []);
+    
+    useEffect(() => {
         async function getResponse() {
             if (!currentFile) return;
             if (!token) return;

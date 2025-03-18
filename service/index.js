@@ -162,6 +162,7 @@ apiRouter.put('/login', async (req, res) => {
         console.log('Username found');
         if (await bcrypt.compare(req.body.password, user.password)) {
             user.token = uuid.v4();
+            await DB.updateUserToken(user.userName, user.token);
             setAuthCookie(res, user.token);
             console.log(`User ${user.userName} logged in successfully`);
             res.status(200).json({

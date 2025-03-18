@@ -33,4 +33,8 @@ async function findByUserName(userName) {
     return await collection.findOne({ userName: userName });
 }
 
-module.exports = { addUser, addFiles, findUser, findByUserName };
+async function updateUserToken(userName, token) {
+    await collection.updateOne({ userName: userName }, { $set: { token: token } });
+}
+
+module.exports = { addUser, addFiles, findUser, findByUserName, updateUserToken };
