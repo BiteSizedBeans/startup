@@ -3,7 +3,7 @@ import { Response } from './response';
 import { SubmitQuestion } from './submitQuestion';
 import { LoginWarning } from '../login/loginWarning';
 
-export function Home({currentFile, token, files}) {
+export function Home({currentFile, token, messageHistory, setMessageHistory}) {
   const [history, setResponse] = useState([]);
   const [question, setQuestion] = useState('');
   const [showTranscript, setShowTranscript] = useState(false);
@@ -48,7 +48,7 @@ export function Home({currentFile, token, files}) {
         )}
         <div className="chat-container">
           <div className="chat-history">
-            <Response prompt={question} setResponse={setResponse} setQuestion={setQuestion} currentFile={currentFile} token={token}/>
+            <Response prompt={question} setResponse={setResponse} setQuestion={setQuestion} currentFile={currentFile} token={token} messageHistory={messageHistory} setMessageHistory={setMessageHistory}/>
           </div>
           <div className="chat-form">
             <SubmitQuestion setQuestion={setQuestion} setResponse={setResponse} history={history} token={token}/>

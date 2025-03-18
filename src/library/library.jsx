@@ -3,11 +3,12 @@ import { NavLink } from 'react-router-dom';
 import { Upload } from './upload';
 import { LoginWarning } from '../login/loginWarning';
 
-export function Library({token, files, setFiles, setCurrentFile, useGuestData, guestFiles}) {
+export function Library({token, files, setFiles, setCurrentFile, useGuestData, guestFiles, setMessageHistory}) {
   const [transcribing, setTranscribing] = useState(false);
 
   function selectFile(file) {
     setCurrentFile(file);
+    setMessageHistory(file.fileChatHistory);
   }
 
   useEffect(() => {

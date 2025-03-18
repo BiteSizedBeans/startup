@@ -15,6 +15,8 @@ export default function App() {
   const [displayName, setDisplayName] = useState('');
   const [guestFiles, setGuestFiles] = useState([]);
   const [useGuestData, setUseGuestData] = useState(true);
+  const [messageHistory, setMessageHistory] = useState([]);
+
 
   return (
     <BrowserRouter>
@@ -41,7 +43,9 @@ export default function App() {
           <Route path='/' element={
             <Home token={token}
              currentFile={currentFile} 
-             files={files} 
+             files={files}
+             messageHistory={messageHistory}
+             setMessageHistory={setMessageHistory}
             />
           } />
           
@@ -52,6 +56,7 @@ export default function App() {
              setCurrentFile={setCurrentFile} 
              useGuestData={useGuestData} 
              guestFiles={guestFiles}
+             setMessageHistory={setMessageHistory}
             />
           } />
           

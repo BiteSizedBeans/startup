@@ -1,7 +1,6 @@
 import React, { useEffect, useState } from 'react';
 
-export function Response({prompt, setResponse, setQuestion, currentFile, token}) {
-    const [messageHistory, setMessageHistory] = useState([]);
+export function Response({prompt, setResponse, setQuestion, currentFile, token, messageHistory, setMessageHistory}) {
     const [loading, setLoading] = useState(false);
     const [error, setError] = useState(null);
 
