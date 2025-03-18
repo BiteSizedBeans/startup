@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { LoginWarning } from './loginWarning';
 
 
-export function Login({token, setToken, displayName, setDisplayName, setFiles, setUseGuestData, setGuestFiles}) {
+export function Login({token, setToken, displayName, setDisplayName, setFiles, setUseGuestData, setGuestFiles, setCurrentFile}) {
   const [userName, setUserName] = useState('');
   const [password, setPassword] = useState('');
 
@@ -63,6 +63,7 @@ export function Login({token, setToken, displayName, setDisplayName, setFiles, s
     setUserName('');
     setPassword('');
     setUseGuestData(true);
+    setCurrentFile('');
   }
 
 

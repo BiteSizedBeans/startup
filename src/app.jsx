@@ -70,6 +70,7 @@ export default function App() {
              useGuestData={useGuestData} 
              setUseGuestData={setUseGuestData} 
              setGuestFiles={setGuestFiles}
+             setCurrentFile={setCurrentFile}
             />
           } />
           

@@ -43,6 +43,7 @@ app.post("/api/generate", async (req, res) => {
     const history = user.files[fileIndex].fileChatHistory;
     try{
         history.push({role: "user", content: message});
+        await DB.updateFileChatHistory(user.userName, req.body.file.fileID, history);
         const response = await openai.chat.completions.create({
             model: "gpt-4o-mini",
             messages: history,
@@ -52,9 +53,10 @@ app.post("/api/generate", async (req, res) => {
 
         const reply = response.choices[0].message.content.trim();
         history.push({role: "assistant", content: reply});
+        await DB.updateFileChatHistory(user.userName, req.body.file.fileID, history);
 
         res.json({
-            chatHistory: history,
+            fileChatHistory: history,
             fileStatus: "success"
         });
     } catch (error) {

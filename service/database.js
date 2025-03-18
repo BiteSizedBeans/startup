@@ -37,4 +37,8 @@ async function updateUserToken(userName, token) {
     await collection.updateOne({ userName: userName }, { $set: { token: token } });
 }
 
-module.exports = { addUser, addFiles, findUser, findByUserName, updateUserToken };
+async function updateFileChatHistory(userName, fileID, history) {
+    await collection.updateOne({ userName: userName, "files.fileID": fileID }, { $set: { "files.$.fileChatHistory": history } });
+}
+
+module.exports = { addUser, addFiles, findUser, findByUserName, updateUserToken, updateFileChatHistory };

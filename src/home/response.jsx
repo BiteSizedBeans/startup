@@ -14,24 +14,23 @@ export function Response({prompt, setResponse, setQuestion, currentFile, token, 
         async function getResponse() {
             if (!currentFile) return;
             if (!token) return;
-            if (prompt) {
-                setLoading(true);
-                setError(null);
-                try {
-                    const response = await fetch('/api/generate', {
-                        method: 'POST',
-                        headers: { 'Content-Type': 'application/json' },
-                        body: JSON.stringify({ message: prompt, token: token, file: currentFile })
-                    });
-                    const data = await response.json();
-                    const chatHistory = data.chatHistory;
-                    setMessageHistory(chatHistory);
-                    setQuestion('');
-                } catch (error) {
-                    setError(error.message);
-                } finally {
-                    setLoading(false);
-                }
+            if (!prompt) return;
+            setLoading(true);
+            setError(null);
+            try {
+                const response = await fetch('/api/generate', {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({ message: prompt, token: token, file: currentFile })
+                });
+                const data = await response.json();
+                const chatHistory = data.fileChatHistory;
+                setMessageHistory(chatHistory);
+                setQuestion('');
+            } catch (error) {
+                setError(error.message);
+            } finally {
+                setLoading(false);
             }
         }
         
