@@ -6,15 +6,16 @@ const multer = require('multer');
 require('dotenv').config();
 const OpenAI = require('openai');
 const fs = require('fs');
-// const { MongoClient } = require('mongodb');
+const { MongoClient } = require('mongodb');
 const config = require('./dbConfig.json');
-// const { register } = require('module');
+const DB = require('./database.js');
 
-// const url = `mongodb+srv://${config.userName}:${config.password}@${config.hostname}`;
-
-// const client = new MongoClient(url);
-// const db = client.db('users');
-// const collection = db.collection('users');
+// await collection.insertOne(house);
+// const cursor = collection.find();
+// const rentals = await cursor.toArray();
+// rentals.forEach((i) => console.log(i));
+// const query = { property_type: 'Condo', beds: { $lt: 2 } };
+// await collection.deleteMany(query);
 
 const app = express();
 
@@ -26,31 +27,6 @@ app.use(cookieParser());
 var apiRouter = express.Router();
 app.use('/api', apiRouter);
 
-const guestUser = {
-    userName: 'guest',
-    password: 'guest',
-    displayName: 'Guest',
-    token: 'guest',
-    files: [{
-        file: {
-            fieldname: 'file',
-            originalname: 'Default_File.MP3',
-            encoding: '7bit',
-            mimetype: 'audio/mpeg',
-            destination: '../public/',
-            filename: 'Default_File',
-            path: '../public/Default_File.MP3',
-            size: 2272889
-          },
-        fileName: "Default_File.MP3",
-        fileID: uuid.v4(),
-        fileTranscript: "We're no strangers to love\nYou know the rules and so do I\nA full commitment's what I'm thinkin' of\nYou wouldn't get this from any other guy\nI just wanna tell you how I'm feeling\nGotta make you understand\nNever gonna give you up\nNever gonna let you down\nNever gonna run around and desert you\nNever gonna make you cry\nNever gonna say goodbye\nNever gonna tell a lie and hurt you\nWe've known each other for so long\nYour heart's been aching, but you're too shy to say it\nInside, we both know what's been going on\nWe know the game and we're gonna play it\nAnd if you ask me how I'm feeling\nDon't tell me you're too blind to see\nNever gonna give you up\nNever gonna let you down\nNever gonna run around and desert you\nNever gonna make you cry\nNever gonna say goodbye\nNever gonna tell a lie and hurt you\nNever gonna give you up\nNever gonna let you down\nNever gonna run around and desert you\nNever gonna make you cry\nNever gonna say goodbye\nNever gonna tell a lie and hurt you\nNever gonna give you up\nNever gonna let you down\nNever gonna run around and desert you\nNever gonna make you cry\nNever gonna say goodbye\nNever gonna tell a lie and hurt you",
-        fileChatHistory: [{role: "user", content: `The transcript of the file we're going to talk about today is: We're no strangers to love\nYou know the rules and so do I\nA full commitment's what I'm thinkin' of\nYou wouldn't get this from any other guy\nI just wanna tell you how I'm feeling\nGotta make you understand\nNever gonna give you up\nNever gonna let you down\nNever gonna run around and desert you\nNever gonna make you cry\nNever gonna say goodbye\nNever gonna tell a lie and hurt you\nWe've known each other for so long\nYour heart's been aching, but you're too shy to say it\nInside, we both know what's been going on\nWe know the game and we're gonna play it\nAnd if you ask me how I'm feeling\nDon't tell me you're too blind to see\nNever gonna give you up\nNever gonna let you down\nNever gonna run around and desert you\nNever gonna make you cry\nNever gonna say goodbye\nNever gonna tell a lie and hurt you\nNever gonna give you up\nNever gonna let you down\nNever gonna run around and desert you\nNever gonna make you cry\nNever gonna say goodbye\nNever gonna tell a lie and hurt you\nNever gonna give you up\nNever gonna let you down\nNever gonna run around and desert you\nNever gonna make you cry\nNever gonna say goodbye\nNever gonna tell a lie and hurt you`}]
-    }]
-}
-
-var users = [guestUser];
-
 
 // ----------------- Backend for the Home Page -----------------
 
@@ -61,7 +37,7 @@ const openai = new OpenAI({
 
 app.post("/api/generate", async (req, res) => {
     const token = req.body.token;
-    const user = users.find(u => u.token === token);
+    const user = await DB.findUser(token);
     const message = req.body.message;
     const fileIndex = user.files.findIndex(f => f.fileID === req.body.file.fileID);
     const history = user.files[fileIndex].fileChatHistory;
@@ -97,7 +73,7 @@ apiRouter.get("/audio/:file", (req, res) => {
 const upload = multer({ dest: 'uploads/' });
 
 apiRouter.post('/upload', upload.single('file'), async (req, res) => {
-    var user = getUser(req.body.token);
+    var user = await DB.findUser(req.body.token);
     if (user) {
         const extension = req.file.originalname.split('.').pop();
         const newPath = `${req.file.destination}${req.file.filename}.${extension}`;
@@ -114,7 +90,7 @@ apiRouter.post('/upload', upload.single('file'), async (req, res) => {
                 fileTranscript: transcript.text,
                 fileChatHistory: [{role: "user", content: `The transcript of the file we're going to talk about today is: ${transcript.text}`}]
             }
-            user.files.push(fileObject);
+            await DB.addFiles(user, fileObject);
         } catch (error) {
             console.error('Error transcribing file:', error.message);
             res.status(400).json({ error: error.message });
@@ -132,13 +108,13 @@ apiRouter.post('/upload', upload.single('file'), async (req, res) => {
     }
 });
 
-apiRouter.get('/files', (req, res) => {
+apiRouter.get('/files', async (req, res) => {
     const authHeader = req.headers.authorization;
     let token
     if (authHeader && authHeader.startsWith('Bearer ')) {
         token = authHeader.substring(7);
     }
-    const user = getUser(token);
+    const user = await DB.findUser(token);
     res.status(200).json({
         files: user.files
     });
@@ -150,7 +126,7 @@ apiRouter.get('/files', (req, res) => {
 
 const authCookieName = 'token';
 
-apiRouter.post('/login', (req, res) => {
+apiRouter.post('/login', async (req, res) => {
     if (!req.body.userName || !req.body.password) {
         res.status(400).send('Username and password are required');
         return;
@@ -162,7 +138,7 @@ apiRouter.post('/login', (req, res) => {
         token: uuid.v4(),
         files: []
     }
-    users.push(user);
+    await DB.addUser(user);
     setAuthCookie(res, user.token);
 
     console.log('New user signup: ' + user.userName);
@@ -175,7 +151,7 @@ apiRouter.post('/login', (req, res) => {
 
 apiRouter.put('/login', async (req, res) => {
     const userName = req.body.userName;
-    const user = users.find(u => u.userName === userName);
+    const user = await DB.findUser(userName);
     if (!user) {
         res.status(401).json({
             status: 'error',
@@ -202,9 +178,9 @@ apiRouter.put('/login', async (req, res) => {
     }
 });
 
-apiRouter.get('/authenticated', (req, res) => {
+apiRouter.get('/authenticated', async (req, res) => {
     const token = getAuthCookie(req);
-    const user = users.find(u => u.token === token);
+    const user = await DB.findUser(token);
     if (user) {
         res.json({ authenticated: true });
     } else {
@@ -223,10 +199,6 @@ function setAuthCookie(res, token) {
 
 function getAuthCookie(req) {
     return req.cookies[authCookieName];
-}
-
-function getUser(token) {
-    return users.find(u => u.token === token);
 }
 
 
