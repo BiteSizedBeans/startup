@@ -29,4 +29,8 @@ async function findUser(token) {
     return await collection.findOne({ token: token });
 }
 
-module.exports = { addUser, addFiles, findUser };
+async function findByUserName(userName) {
+    return await collection.findOne({ userName: userName });
+}
+
+module.exports = { addUser, addFiles, findUser, findByUserName };

@@ -151,7 +151,7 @@ apiRouter.post('/login', async (req, res) => {
 
 apiRouter.put('/login', async (req, res) => {
     const userName = req.body.userName;
-    const user = await DB.findUser(userName);
+    const user = await DB.findByUserName(userName);
     if (!user) {
         res.status(401).json({
             status: 'error',
