@@ -6,6 +6,10 @@ import { LoginWarning } from '../login/loginWarning';
 export function Library({token, files, setFiles, setCurrentFile, useGuestData, guestFiles}) {
   const [transcribing, setTranscribing] = useState(false);
 
+  function selectFile(file) {
+    setCurrentFile(file);
+  }
+
   useEffect(() => {
     if (token) {
       fetch('/api/files', {
@@ -43,7 +47,7 @@ export function Library({token, files, setFiles, setCurrentFile, useGuestData, g
           {files.length === 0 && <p>No uploaded files... yet</p>}
           {files.map((file, index) => (
             <li key={index}>
-              <NavLink className='nav-link' to='/' onClick={() => setCurrentFile(file)}>{file.fileName}</NavLink>
+              <NavLink className='nav-link' to='/' onClick={() => selectFile(file)}>{file.fileName}</NavLink>
             </li>
           ))}
           {transcribing && <p>Transcribing File...</p>}
