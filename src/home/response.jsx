@@ -7,6 +7,8 @@ export function Response({prompt, setResponse, setQuestion, currentFile, token, 
     useEffect(() => {
         if (currentFile) {
             setMessageHistory(currentFile.fileChatHistory);
+        } else {
+            setMessageHistory([]);
         }
     }, []);
     
