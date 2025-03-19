@@ -72,7 +72,7 @@ apiRouter.get("/audio/:file", (req, res) => {
 
 // ----------------- Backend for the Library Page -----------------
 
-const upload = multer({ dest: 'uploads/' });
+const upload = multer({ dest: 'service/uploads/' });
 
 apiRouter.post('/upload', upload.single('file'), async (req, res) => {
     var user = await DB.findUser(req.body.token);
