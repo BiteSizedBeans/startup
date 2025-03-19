@@ -10,13 +10,6 @@ const { MongoClient } = require('mongodb');
 const config = require('./dbConfig.json');
 const DB = require('./database.js');
 
-// await collection.insertOne(house);
-// const cursor = collection.find();
-// const rentals = await cursor.toArray();
-// rentals.forEach((i) => console.log(i));
-// const query = { property_type: 'Condo', beds: { $lt: 2 } };
-// await collection.deleteMany(query);
-
 const app = express();
 
 const port = process.argv.length > 2 ? process.argv[2] : 4000;

@@ -6,6 +6,7 @@ const url = `mongodb+srv://${config.userName}:${config.password}@${config.hostna
 const client = new MongoClient(url);
 const db = client.db('startup');
 const collection = db.collection('users');
+const fileCollection = db.collection('files');
 
 (async function testConnection() {
     try {
@@ -41,4 +42,12 @@ async function updateFileChatHistory(userName, fileID, history) {
     await collection.updateOne({ userName: userName, "files.fileID": fileID }, { $set: { "files.$.fileChatHistory": history } });
 }
 
-module.exports = { addUser, addFiles, findUser, findByUserName, updateUserToken, updateFileChatHistory };
+async function addFile(file) {
+    await fileCollection.insertOne(file);
+}
+
+async function findFile(fileID) {
+    return await fileCollection.findOne({ fileID: fileID });
+}
+
+module.exports = { addUser, addFiles, findUser, findByUserName, updateUserToken, updateFileChatHistory, addFile, findFile };
