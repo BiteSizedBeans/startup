@@ -59,7 +59,7 @@ app.post("/api/generate", async (req, res) => {
 });
 
 apiRouter.get("/audio/:file", (req, res) => {
-    const audioSrc = `${__dirname}/uploads/${req.params.file}`;
+    const audioSrc = `${__dirname}/service/uploads/${req.params.file}`;
     res.sendFile(audioSrc);
 });
 
