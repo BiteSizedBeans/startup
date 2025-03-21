@@ -7,6 +7,11 @@ export function Upload({setFiles, token, setTranscribing}) {
             setTranscribing(true);
             const file = event.target.files[0];
             if (file && (file.type === 'audio/mpeg' || file.type === 'audio/x-m4a')) {
+                if (file.size >= 26214400) {
+                    alert('File size exceeds 25 MB. Please upload a smaller file.');
+                    setTranscribing(false);
+                    return;
+                }
                 
                 const fileData = new FormData();
                 fileData.append('file', file);
