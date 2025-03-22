@@ -33,3 +33,7 @@ This was wild. I think I got it down as long as I have my usestates and use effe
 ## Service Notes
 
 This was really hard. It gets harder every time. The apis were super tricky to figure out, especially the file handling. I probably spend nearly 3 hours on trying to just get the file handling to work, this was super hard. I might have kinda shot myself in the foot though because of what api's I chose to use and what the actual premise of my startup is. I hope (and think) that moving to a database will be pretty straightforeward since I already have one mocked up pretty well.
+
+## Database Notes.
+
+As I has expected, this was significantly easier than the previous few deliverables. It took maybe a day to do. I did play with some other features and whatnot along the way, and found the source of a bug in my code. When the deployment scripts run, it uploads a different file structure than the one I have here, which causes problems with the file handling. So my code will either work on the server or it will work locally, but not both.
