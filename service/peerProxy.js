@@ -1,11 +1,28 @@
 const { WebSocketServer } = require('ws');
+const uuid = require('uuid');
+
+const connections = [];
 
 function peerProxy(httpServer) {
     const wss = new WebSocketServer({ noServer: true });
 
     wss.on('connection', (ws) => {
+        connections.push({
+            ws: ws,
+            alive: true,
+            id: uuid.v4()
+        });
+        
         ws.on('message', (message) => {
             console.log(message);
+        });
+
+        ws.on('close', () => {
+            const pos = connections.findIndex((o, i) => o.id === id);
+        
+            if (pos >= 0) {
+                connections.splice(pos, 1);
+            }
         });
 
         ws.on('pong', () => {

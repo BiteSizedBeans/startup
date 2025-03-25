@@ -12,16 +12,9 @@ const DB = require('./database.js');
 const { WebSocketServer } = require('ws');
 const http = require('http');
 const app = express();
+const peerProxy = require('./peerProxy.js');
 
 const port = process.argv.length > 2 ? process.argv[2] : 4000;
-const server = http.createServer(app);
-const wss = new WebSocketServer({ server });
-server.on('upgrade', (request, socket, head) => {
-    wss.handleUpgrade(request, socket, head, (ws) => {
-        wss.emit('connection', ws, request);
-    });
-});
-
 
 app.use(express.static('public'));
 app.use(express.json());
@@ -207,6 +200,8 @@ function getAuthCookie(req) {
 }
 
 
-server.listen(port, () => {
+const httpServer = app.listen(port, () => {
     console.log(`Listening on port ${port}`);
   });
+
+peerProxy(httpServer);
