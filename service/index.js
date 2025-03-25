@@ -9,10 +9,13 @@ const fs = require('fs');
 const { MongoClient } = require('mongodb');
 const config = require('./dbConfig.json');
 const DB = require('./database.js');
-
+const { WebSocketServer } = require('ws');
+const http = require('http');
 const app = express();
 
 const port = process.argv.length > 2 ? process.argv[2] : 4000;
+const server = http.createServer(app);
+const wss = new WebSocketServer({ server });
 
 app.use(express.static('public'));
 app.use(express.json());
@@ -198,6 +201,6 @@ function getAuthCookie(req) {
 }
 
 
-app.listen(port, () => {
+server.listen(port, () => {
     console.log(`Listening on port ${port}`);
   });
