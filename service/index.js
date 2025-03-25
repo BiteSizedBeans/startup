@@ -16,6 +16,12 @@ const app = express();
 const port = process.argv.length > 2 ? process.argv[2] : 4000;
 const server = http.createServer(app);
 const wss = new WebSocketServer({ server });
+server.on('upgrade', (request, socket, head) => {
+    wss.handleUpgrade(request, socket, head, (ws) => {
+        wss.emit('connection', ws, request);
+    });
+});
+
 
 app.use(express.static('public'));
 app.use(express.json());
