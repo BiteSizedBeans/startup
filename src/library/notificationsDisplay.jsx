@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
 
-export function Notifications({token}) {
+export function NotificationsDisplay() {
     const [notifications, setNotifications] = useState([]);
     const [notificationManager] = useState(() => new Notification());
 

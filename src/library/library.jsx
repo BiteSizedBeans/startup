@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react';
 import { NavLink } from 'react-router-dom';
 import { Upload } from './upload';
 import { LoginWarning } from '../login/loginWarning';
-import { Notifications } from './notifications';
+import { NotificationsDisplay } from './notificationsDisplay';
 
 export function Library({token, files, setFiles, setCurrentFile, useGuestData, guestFiles, setMessageHistory}) {
   const [transcribing, setTranscribing] = useState(false);
@@ -58,7 +58,7 @@ export function Library({token, files, setFiles, setCurrentFile, useGuestData, g
         <Upload setFiles={setFiles} token={token} useGuestData={useGuestData} guestFiles={guestFiles} setTranscribing={setTranscribing}/>
       </div>
       <div className='notifications-container'>
-        <Notifications token={token} />
+        <NotificationsDisplay/>
       </div>
     </main>
   );
