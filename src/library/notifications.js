@@ -5,11 +5,14 @@ export default class Notification {
         this.socket = new WebSocket(`${protocol}://${window.location.hostname}:${port}/ws`);
         this.notifications = [];
         this.listeners = new Set();
+    }
+
+    connect() {        
         this.socket.onopen = () => {
             console.log('Connected to notification server');
         };
 
-        this.socket.onmessage = (event) => {
+        this.socket.onmessage = async (event) => {
             const notification = JSON.parse(event.data);
             this.notifications.push(notification);
             this.notifyListeners(notification);
@@ -29,7 +32,9 @@ export default class Notification {
     }
 
     notifyListeners(notification) {
-        this.listeners.forEach(callback => callback(notification));
+        this.notifications.forEach(notification => {
+            this.listeners.forEach(callback => callback(notification));
+        });
     }
 
     getNotifications() {

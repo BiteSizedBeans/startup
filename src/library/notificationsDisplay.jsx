@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from 'react';
+import Notification from './notifications';
 
 export function NotificationsDisplay() {
     const [notifications, setNotifications] = useState([]);
