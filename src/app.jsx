@@ -6,6 +6,7 @@ import { BrowserRouter, NavLink, Route, Routes } from 'react-router-dom';
 import { Library } from './library/library';
 import { Login } from './login/login';
 import { Home } from './home/home';
+import { NotificationDisplay } from './library/NotificationDisplay';
 import { useState } from 'react';
 
 export default function App() {
@@ -38,6 +39,8 @@ export default function App() {
           </div>
           <img src="TalkBackLogo.jpeg" alt="Talk Back Logo" width="100" height="100"></img>  
         </header>
+
+        <NotificationDisplay />
 
         <Routes>
           <Route path='/' element={

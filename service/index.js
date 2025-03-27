@@ -88,6 +88,11 @@ apiRouter.post('/upload', upload.single('file'), async (req, res) => {
                 fileChatHistory: [{role: "user", content: `The transcript of the file we're going to talk about today is: ${transcript.text}`}]
             }
             await DB.addFiles(user, fileObject);
+
+            broadcastNotification({
+                type: 'fileUpload',
+                message: `${user.userName} uploaded a new file: ${req.file.filename}`
+            })
         } catch (error) {
             console.error('Error transcribing file:', error.message);
             res.status(400).json({ error: error.message });
@@ -117,6 +122,17 @@ apiRouter.get('/files', async (req, res) => {
     });
 });
 
+apiRouter.get('/notifications', async (req, res) => {
+    const authHeader = req.headers.authorization;
+    let token
+    if (authHeader && authHeader.startsWith('Bearer ')) {
+        token = authHeader.substring(7);
+    }   
+    const user = await DB.findUser(token);
+    res.status(200).json({
+        notifications: user.notifications
+    });
+});
 
 // ----------------- Backend for the Login Page -----------------
 

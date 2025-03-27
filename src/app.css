@@ -397,3 +397,43 @@ footer p a:hover {
     text-decoration-thickness: 2px;
     text-underline-offset: 5px;
 }
+
+.notification-container {
+    position: fixed;
+    top: 20px;
+    right: 20px;
+    z-index: 1000;
+    max-width: 300px;
+}
+
+.notification {
+    background-color: #ffffff;
+    border-left: 4px solid #007bff;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.2);
+    margin-bottom: 10px;
+    padding: 15px;
+    border-radius: 4px;
+    animation: slideIn 0.3s ease-out;
+}
+
+.notification p {
+    margin: 0;
+    color: #333;
+}
+
+.notification small {
+    color: #666;
+    display: block;
+    margin-top: 5px;
+}
+
+@keyframes slideIn {
+    from {
+        transform: translateX(100%);
+        opacity: 0;
+    }
+    to {
+        transform: translateX(0);
+        opacity: 1;
+    }
+}
