@@ -2,6 +2,7 @@ import React, { useEffect, useState } from 'react';
 import { NavLink } from 'react-router-dom';
 import { Upload } from './upload';
 import { LoginWarning } from '../login/loginWarning';
+import { Notifications } from './notifications';
 
 export function Library({token, files, setFiles, setCurrentFile, useGuestData, guestFiles, setMessageHistory}) {
   const [transcribing, setTranscribing] = useState(false);
@@ -44,6 +45,7 @@ export function Library({token, files, setFiles, setCurrentFile, useGuestData, g
   return (
     <main className='main-lib'>
       {!token && <LoginWarning />}
+      <div className='library-container'>
         <ul>
           {files.length === 0 && <p>No uploaded files... yet</p>}
           {files.map((file, index) => (
@@ -54,6 +56,10 @@ export function Library({token, files, setFiles, setCurrentFile, useGuestData, g
           {transcribing && <p>Transcribing File...</p>}
         </ul>
         <Upload setFiles={setFiles} token={token} useGuestData={useGuestData} guestFiles={guestFiles} setTranscribing={setTranscribing}/>
+      </div>
+      <div className='notifications-container'>
+        <Notifications token={token} />
+      </div>
     </main>
   );
 }

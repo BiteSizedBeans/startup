@@ -1,10 +1,22 @@
+import React, { useEffect, useState } from 'react';
+
 export function Notifications({token}) {
+    const [notifications, setNotifications] = useState([]);
+
+    useEffect(() => {
+        fetch('/api/notifications')
+            .then(response => response.json())
+            .then(data => setNotifications(data));
+    }, [token]);
+
     return (
         <div>
             <ul>
-                <li>Notification 1</li>
-                <li>Notification 2</li>
-                <li>Notification 3</li>
+                {notifications.map((notification, index) => (
+                <li key={index}>
+                    <p>{notification}</p>
+                </li>
+                ))}
             </ul>
         </div>
     )
